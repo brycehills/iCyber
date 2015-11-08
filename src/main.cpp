@@ -2,6 +2,14 @@
 #include <windowsx.h>
 #include <iostream>
 #include "windows/Loader.h"
+#include "windows/Login.h"
+#include "windows/AddUser.h"
+#include "windows/DisplayCustomers.h"
+#include "windows/TestimonialsAdmin.h"
+#include "windows/AdminMenu.h"
+#include "windows/TestimonialsCustomer.h"
+#include "windows/OrderProducts.h"
+#include "windows/CustomerMenu.h"
 #include "gui/zahnrad.h"
 #include "GUI.h"
 #include "Member/Member.h"
@@ -23,7 +31,7 @@ int window_index = 0;
 int window; //for saving window data
 
 //Number of windows, add as you move forward
-int num_windows = 1;
+int num_windows = 9;
 
 int *num_members;
 Member **members; //sexy right?
@@ -105,6 +113,8 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prev, LPSTR lpCmdLine, int sho
     windows = new Window*[num_windows];
     for (int i = 0; i < num_windows; i++) windows[i] = NULL;
     windows[LOADER] = new Loader(members, num_members);
+    windows[LOGIN] = new Login(members, num_members);
+    windows[ORDER_PRODUCTS] = new OrderProducts(members, num_members);
     //load your windows here!
 
     gui.running = true;

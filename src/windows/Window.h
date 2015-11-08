@@ -13,7 +13,15 @@
 using namespace std;
 
 //make sure you add your window to the archive here!
-const int LOADER = 0;
+const int LOADER = 8;
+const int CUSTOMER_DISPLAY = 7;
+const int CUSTOMER_ADD_DELETE = 6;
+const int TESTIMONIAL_ADMIN = 5;
+const int ADMIN_MENU = 4;
+const int TESTIMONIAL_CUSTOMER = 3;
+const int CUSTOMER_MENU = 1;
+const int LOGIN = 0;
+const int ORDER_PRODUCTS = 0;
 
 namespace patch { //this is for to_string
     template < typename T > std::string to_string( const T& n ) {

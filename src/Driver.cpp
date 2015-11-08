@@ -10,7 +10,7 @@
 #include "CustomerList.h"
 #include "Customer.h"
 
-
+/*
 int main()
 {
 	//driver for customerlist
@@ -39,3 +39,4 @@ int main()
 
 	return 0;
 }
+*/
