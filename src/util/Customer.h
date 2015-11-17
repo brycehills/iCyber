@@ -2,8 +2,11 @@
 #ifndef CUSTOMER_H_
 #define CUSTOMER_H_
 
-#include "header.h"
-//#include "DateClass/Date.h"
+#include <iostream>
+#include <sstream>
+#include<iomanip>
+
+using namespace std;
 
 /************************************************************************
  * Customer CLASS

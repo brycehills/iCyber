@@ -13,7 +13,8 @@
 using namespace std;
 
 //make sure you add your window to the archive here!
-const int LOADER = 0;
+const int ADMIN = 0;
+const int LOADER = 1;
 
 namespace patch { //this is for to_string
     template < typename T > std::string to_string( const T& n ) {
@@ -42,9 +43,11 @@ public:
 		update = false;
 		exit_prog = false;
 	}
+
 	void issue_update() {
 		update = true;
 	}
+
 	bool do_update() { //don't call this function
 		if (update) {
 			update = false;
@@ -52,21 +55,28 @@ public:
 		}
 		return false;
 	}
+
 	void update_data(Member **m, int *n_m) { //don't call this function
 		members = m;
 		num_members = n_m;
 	}
+
 	void set_data(Member **&m, int *&n_m) { //don't call this function
 		m = members;
 		n_m = num_members;
 	}
+
 	virtual ~Window() {}
+
 	virtual void render_main(zr_window *) = 0;
+
 	virtual void init() = 0;
+
 	void changeWindow(int ID) {
 		set = true;
 		ID_c = ID;
 	}
+
 	int setWindow() { //don't call this function
 		if (set) {
 			set = false;
@@ -74,9 +84,11 @@ public:
 		}
 		return ID;
 	}
+
 	void exit() {
 		exit_prog = true;
 	}
+
 	bool exit_program() { //don't call this function
 		return exit_prog;
 	}

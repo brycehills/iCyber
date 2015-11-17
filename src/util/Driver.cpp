@@ -6,12 +6,16 @@
  * SECTION       : M-W 5:30pm
  * DUE DATE      : eventually
  ************************************************************************/
-#include "header.h"
+#include <iostream>
+#include <sstream>
+#include<iomanip>
+
+using namespace std;
 #include "CustomerList.h"
 #include "Customer.h"
 
 
-int main()
+int main_s()
 {
 	//driver for customerlist
 
