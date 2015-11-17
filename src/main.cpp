@@ -3,6 +3,7 @@
 #include <iostream>
 #include "windows/Loader.h"
 #include "windows/Admin.h"
+#include "windows/Login.h"
 #include "gui/zahnrad.h"
 #include "GUI.h"
 #include "Member/Member.h"
@@ -24,7 +25,7 @@ int window_index = 0;
 int window; //for saving window data
 
 //Number of windows, add as you move forward
-int num_windows = 2;
+int num_windows = 3;
 
 int *num_members;
 Member **members; //sexy right?
@@ -107,6 +108,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prev, LPSTR lpCmdLine, int sho
     for (int i = 0; i < num_windows; i++) windows[i] = NULL;
     windows[ADMIN] = new Admin(members, num_members);
     windows[LOADER] = new Loader(members, num_members);
+    windows[LOGIN] = new Login(members, num_members);
     //load your windows here!
 
     gui.running = true;
