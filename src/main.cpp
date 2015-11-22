@@ -4,6 +4,7 @@
 #include "windows/Loader.h"
 #include "windows/Admin.h"
 #include "windows/Login.h"
+#include "windows/OrderProducts.h"
 #include "gui/zahnrad.h"
 #include "GUI.h"
 #include "Member/Member.h"
@@ -109,6 +110,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prev, LPSTR lpCmdLine, int sho
     windows[ADMIN] = new Admin(members, num_members);
     windows[LOADER] = new Loader(members, num_members);
     windows[LOGIN] = new Login(members, num_members);
+    windows[ORDER_PRODUCTS] = new OrderProducts(members, num_members);
     //load your windows here!
 
     gui.running = true;

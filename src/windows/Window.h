@@ -13,6 +13,7 @@
 using namespace std;
 
 //make sure you add your window to the archive here!
+const int ORDER_PRODUCTS = 3;
 const int ADMIN = 2;
 const int LOADER = 1;
 const int LOGIN = 0;
