@@ -9,10 +9,12 @@
 #include <iostream>
 #include "../Member/Member.h"
 #include "../gui/zahnrad.h"
+#include <stack>
 
 using namespace std;
 
 //make sure you add your window to the archive here!
+const int TESTIMONIALS = 4;
 const int ORDER_PRODUCTS = 3;
 const int ADMIN = 2;
 const int LOADER = 1;
@@ -33,6 +35,7 @@ private:
 protected:
 	Member **members;
 	int *num_members;
+	stack<string> testimonials;
 public:
 	void * return_val;
 	int ID;
