@@ -6,21 +6,23 @@
 Customer::Customer()
 {
 	name = "";
-	address = "";
+	street = "";
+	stateZipCode = "";
 	receivedPamphlet = false;
-	type = ' ';
-	rating = 1;
+	isKey = false;
+	rating = "not interested";
 
 }
 
 // NON DEFAULT constructor
-Customer::Customer(string customerName, string customerAddress,
-		bool customerPamphlet, char customerType, int customerRating)
+Customer::Customer(string customerName, string customerStreet, string customerStateZipCode,
+		bool customerPamphlet, bool customerIsKey, string customerRating)
 {
 	name 	= customerName;
-	address = customerAddress;
+	street = customerStreet;
+	stateZipCode = customerStateZipCode;
 	receivedPamphlet = customerPamphlet;
-	type 	= customerType;
+	isKey 	= customerIsKey;
 	rating 	= customerRating;
 }
 
@@ -42,14 +44,16 @@ Customer::~Customer(){}
  * Return: none
  ***********************************************************************/
 
-void Customer::SetValues(string customerName, string customerAddress,
-		bool customerPamphlet, char customerType, int customerRating)
+void Customer::SetValues(string customerName, string customerStreet,
+		string customerStateZipCode, bool customerPamphlet, bool customerIsKey,
+		string customerRating)
 {
-	name		  		= customerName;
-	address  	  		= customerAddress;
-	receivedPamphlet 	= customerPamphlet;
-	type          		= customerType;
-	rating		  		= customerRating;
+	name 	= customerName;
+	street = customerStreet;
+	stateZipCode = customerStateZipCode;
+	receivedPamphlet = customerPamphlet;
+	isKey 	= customerIsKey;
+	rating 	= customerRating;
 }
 
 
@@ -64,13 +68,23 @@ void Customer::SetName(string customerName)
 }
 
 /************************************************************************
- * void SetCustomerAddress(string customerAddress);
- * MUTATOR: Sets the Customer's address
+ * void SetStreet(string customerStreet);
+ * MUTATOR: Changes the Customer's street
  * Return: none
  ***********************************************************************/
-void Customer::SetCustomerAddress(string customerAddress)
+void Customer::SetStreet(string customerStreet)
 {
-	address = customerAddress;
+	street = customerStreet;
+}
+
+/************************************************************************
+ * void SetStateZipCode (string customerStateZipCode);
+ * MUTATOR: Changes the Customer's state and zip code
+ * Return: none
+ ***********************************************************************/
+void Customer::SetStateZipCode(string customerStateZipCode)
+{
+	stateZipCode = customerStateZipCode;
 }
 
 /************************************************************************
@@ -88,9 +102,9 @@ void Customer::SetReceivedPamphlet(bool customerPamphlet)
  * MUTATOR: Sets whether the Customer is a regular Customer or key
  * Return: none
  ***********************************************************************/
-void Customer::SetType(char customerType)
+void Customer::SetType(bool customerIsKey)
 {
-	type = customerType;
+	isKey = customerIsKey;
 }
 
 /************************************************************************
@@ -98,7 +112,7 @@ void Customer::SetType(char customerType)
  * MUTATOR: Sets the customer rating
  * Return: none
  ***********************************************************************/
-void Customer::SetRating(int customerRating)
+void Customer::SetRating(string customerRating)
 {
 	rating = customerRating;
 }
@@ -119,13 +133,23 @@ string Customer::GetName()
 }
 
 /************************************************************************
- * string GetCustomerNum();
- * MUTATOR: none
- * Return: CustomerNum
+ * string GetStreet();
+ * ACCESSOR: none
+ * Return: street
  ***********************************************************************/
-string Customer::GetCustomerAddress()
+string Customer::GetStreet()
 {
-	return address;
+	return street;
+}
+
+/************************************************************************
+ * string GetStateZipCode();
+ * ACCESSOR: none
+ * Return: stateZipCode
+ ***********************************************************************/
+string Customer::GetStateZipCode()
+{
+	return stateZipCode;
 }
 
 /************************************************************************
@@ -143,9 +167,9 @@ bool Customer::GetPamphlet()
  * MUTATOR: none
  * Return: CustomerType
  ***********************************************************************/
-char Customer::GetType()
+bool Customer::GetIsKey()
 {
-	return type;
+	return isKey;
 }
 
 /************************************************************************
@@ -153,7 +177,7 @@ char Customer::GetType()
  * MUTATOR: none
  * Return: rating
  ***********************************************************************/
-int Customer::GetRating()
+string Customer::GetRating()
 {
 	return rating;
 }
@@ -171,25 +195,47 @@ int Customer::GetRating()
  ***********************************************************************/
 string Customer::Print()
 {
-	ostringstream out;
+//	ostringstream out;
+//
+//	out << left;
+//	out << setw(25) << name;
+//	out << setw(15) << address;
+//	if(isKey)
+//	{
+//		out << setw(10) << "key";
+//	}
+//	else
+//	{
+//		out << setw(10) << "nice to have";
+//	}
+//	out << setw(10) << rating;
+//	if(receivedPamphlet)
+//	{
+//		out << "Received";
+//	}
+//	else
+//	{
+//		out << "Not Received";
+//	}
+//
+//	out << right;
+//	out << endl;
+//
+//	return out.str();
+	return "null";
+}
 
-	out << left;
-	out << setw(25) << name;
-	out << setw(15) << address;
-	out << setw(10) << type;
-	out << setw(10) << rating;
-	//out << setw(10) << receivedPamphlet;
-	if(receivedPamphlet)
-	{
-		out << "Received";
-	}
-	else
-	{
-		out << "Not Received";
-	}
+/******************
+ ***  UTILITY ***
+ ******************/
 
-	out << right;
-	out << endl;
-
-	return out.str();
+/************************************************************************
+ * bool operator<(const Customer &otherCustomer) const
+ * DESCRIPTION: Overloads < operator for sorting
+ * MUTATOR: none
+ * Return: whether the object's name is alphabetically lower than the
+ * other object's name
+ ***********************************************************************/
+bool Customer::operator<(const Customer &otherCustomer) const {
+	return name < otherCustomer.name;
 }

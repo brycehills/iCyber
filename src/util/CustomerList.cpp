@@ -94,7 +94,7 @@ bool CustomerList::AddCustomer(string customerName, string customerNum,
 	ptr = new CustomerNode;
 
 	/// PROCESSING - set all attributes of the new member object
-	ptr -> currentCustomer.SetValues(customerName, customerNum, customerPamphlet, customerType, customerRating);
+	//ptr -> currentCustomer.SetValues(customerName, customerNum, customerPamphlet, customerType, customerRating);
 
 	success = (ValidateCustomer(customerName) == false && ValidateCustomer(customerNum) == false);
 	if(success)
@@ -215,18 +215,18 @@ bool CustomerList::ValidateCustomer(string input)
     inValid = false;
 
 
-    while(ptr!=NULL && !inValid)
-	{
-		if(input == ptr->currentCustomer.GetName() || input == ptr->currentCustomer.GetCustomerAddress())
-		{
-            inValid = true;
-
-		}
-		else
-		{
-			ptr = ptr -> next;
-		}
-	}
+//    while(ptr!=NULL && !inValid)
+//	{
+//		if(input == ptr->currentCustomer.GetName() || input == ptr->currentCustomer.GetCustomerAddress())
+//		{
+//            inValid = true;
+//
+//		}
+//		else
+//		{
+//			ptr = ptr -> next;
+//		}
+//	}
 
 
 

@@ -7,9 +7,12 @@ void Login::render_main(zr_window *window) {
 		if (state == 1) {
 			if (adminLogin) {
 				zr_header(&context, "Correct login - administrator", 0, 0, ZR_HEADER_LEFT);
+				adminLogin = false;
+				changeWindow(ADMIN);
 			}
 			else {
 				zr_header(&context, "Correct login - customer", 0, 0, ZR_HEADER_LEFT);
+				changeWindow(CUSTOMER_MENU);
 			}
 
 		} else {

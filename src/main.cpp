@@ -6,6 +6,8 @@
 #include "windows/Login.h"
 #include "windows/OrderProducts.h"
 #include "windows/Testimonials.h"
+#include "windows/CustomerMenu.h"
+#include "windows/CustomerListWindow.h"
 #include "gui/zahnrad.h"
 #include "GUI.h"
 #include "Member/Member.h"
@@ -27,7 +29,7 @@ int window_index = 0;
 int window; //for saving window data
 
 //Number of windows, add as you move forward
-int num_windows = 3;
+int num_windows = 7;
 
 int *num_members;
 Member **members; //sexy right?
@@ -76,7 +78,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prev, LPSTR lpCmdLine, int sho
     xw.wc.lpszClassName = "GUI";
     RegisterClass(&xw.wc);
     xw.hWnd = CreateWindowEx(
-        0, xw.wc.lpszClassName, "BulkClub!",
+        0, xw.wc.lpszClassName, "iCyber",
         WS_OVERLAPPED|WS_CAPTION|WS_SYSMENU|WS_MINIMIZEBOX|WS_MAXIMIZEBOX|WS_VISIBLE,
         CW_USEDEFAULT, CW_USEDEFAULT,
         WINDOW_WIDTH, WINDOW_HEIGHT,
@@ -108,11 +110,13 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prev, LPSTR lpCmdLine, int sho
 
     windows = new Window*[num_windows];
     for (int i = 0; i < num_windows; i++) windows[i] = NULL;
-    windows[ADMIN] = new Admin(members, num_members);
-    windows[LOADER] = new Loader(members, num_members);
     windows[LOGIN] = new Login(members, num_members);
+    windows[LOADER] = new Loader(members, num_members);
+    windows[ADMIN] = new Admin(members, num_members);
     windows[ORDER_PRODUCTS] = new OrderProducts(members, num_members);
     windows[TESTIMONIALS] = new Testimonials(members, num_members);
+    windows[CUSTOMER_MENU] = new CustomerMenu(members, num_members);
+    windows[CUSTOMER_LIST] = new CustomerListWindow(members, num_members);
     //load your windows here!
 
     gui.running = true;

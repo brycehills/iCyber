@@ -20,8 +20,9 @@ public:
 
 	//CONSTRUCTORS
 	Customer();
-	Customer(string customerName, string customerAddress,
-			bool customerPamphlet, char customerType, int customerRating);
+	Customer(string customerName, string customerStreet,
+			string customerStateZipCode, bool customerPamphlet,
+			bool customerIsKey, string customerRating);
 
 	//DESTRUCTOR
 	~Customer();
@@ -31,8 +32,9 @@ public:
 	 ***  MUTATORS  ***
 	 ******************/
 
-	void SetValues(string customerName, string customerAddress,
-			bool customerPamphlet, char customerType, int customerRating);
+	void SetValues(string customerName, string customerStreet,
+			string customerStateZipCode, bool customerPamphlet,
+			bool customerIsKey, string customerRating);
 
 	/************************************************************************
 	 * void SetName(string memName);
@@ -42,11 +44,18 @@ public:
 	void SetName(string memName);
 
 	/************************************************************************
-	 * void SetCustomerNumber(Customer memNum);
-	 * MUTATOR: Changes the Customer's address
+	 * void SetStreet(string customerStreet);
+	 * MUTATOR: Changes the Customer's street
 	 * Return: none
 	 ***********************************************************************/
-	void SetCustomerAddress(string customerAddress);
+	void SetStreet(string customerStreet);
+
+	/************************************************************************
+	 * void SetStateZipCode (string customerStateZipCode);
+	 * MUTATOR: Changes the Customer's state and zip code
+	 * Return: none
+	 ***********************************************************************/
+	void SetStateZipCode(string customerStateZipCode);
 
 	/************************************************************************
 	 * void SetType(char customerType);
@@ -56,18 +65,18 @@ public:
 	void SetReceivedPamphlet(bool customerPamphlet);
 
 	/************************************************************************
-	 * void SetType(char customerType);
+	 * 	void SetType(bool customerIsKey);
 	 * MUTATOR: Changes whether the Customer is a regular or key customer
 	 * Return: none
 	 ***********************************************************************/
-	void SetType(char customerType);
+	void SetType(bool customerIsKey);
 
 	/************************************************************************
-	 * void SetType(char customerType);
-	 * MUTATOR: Changes whether the Customer is a regular or key customer
+	 * void SetRating(string customerRating);
+	 * MUTATOR: Changes whether the Customer rating
 	 * Return: none
 	 ***********************************************************************/
-	void SetRating(int customerRating);
+	void SetRating(string customerRating);
 
 
 	/******************
@@ -82,11 +91,18 @@ public:
 	string GetName();
 
 	/************************************************************************
-	 * string GetCustomerNumber();
+	 * string GetStreet();
 	 * ACCESSOR: none
-	 * Return: CustomerAddress
+	 * Return: street
 	 ***********************************************************************/
-	string GetCustomerAddress();
+	string GetStreet();
+
+	/************************************************************************
+	 * string GetStateZipCode();
+	 * ACCESSOR: none
+	 * Return: stateZipCode
+	 ***********************************************************************/
+	string GetStateZipCode();
 
 	/************************************************************************
 	 * bool GetPamphlet();
@@ -97,18 +113,18 @@ public:
 
 
 	/************************************************************************
-	 * char GetType();
+	 * bool GetIsKey;
 	 * ACCESSOR: none
-	 * Return: type
+	 * Return: isKey
 	 ***********************************************************************/
-	char GetType();
+	bool GetIsKey();
 
 	/************************************************************************
 	 * int GetRating();
 	 * ACCESSOR: none
 	 * Return: int - rating of customer
 	 ***********************************************************************/
-	int GetRating();
+	string GetRating();
 
 
 	/******************
@@ -124,15 +140,27 @@ public:
 	 ***********************************************************************/
 	string Print();
 
+	/******************
+	 ***  UTILITY ***
+	 ******************/
+
+	/************************************************************************
+	 * bool operator<(const Customer &otherCustomer) const
+	 * DESCRIPTION: Overloads < operator for sorting
+	 * MUTATOR: none
+	 * Return: whether the object's name is alphabetically lower than the
+	 * other object's name
+	 ***********************************************************************/
+	bool operator<(const Customer &otherCustomer) const;
+
 
 private:
     string name;			/// OUT - name of customer
-    string address;			/// OUT - Customer number of customer
+    string street;
+    string stateZipCode;
     bool receivedPamphlet;	/// OUT - if customer has received pamphlet or not
-    char type;				/// OUT - tells if Customer is regular or executive
-    int rating;				/// OUT - Customer rating
-
-
+    bool isKey;				/// OUT - tells if Customer is regular or executive
+    string rating;			/// OUT - Customer rating
 };
 
 

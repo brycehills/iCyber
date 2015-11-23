@@ -5,14 +5,6 @@ void Testimonials::render_main(zr_window *window) {
 	zr_context context;
 	zr_begin(&context, window);
 	{
-		// default testimonials, temporary
-		if (state == 0) {
-			testimonials.push("Best thing since sliced bread");
-			testimonials.push("Take my money");
-			cout << testimonials.size()  << "\n";
-			state = 1;
-		}
-
 		zr_header(&context, "Testimonials", 0, 0, ZR_HEADER_LEFT);
 		zr_layout_row_dynamic(&context, 30, 1);
 
@@ -37,8 +29,12 @@ void Testimonials::render_main(zr_window *window) {
 				newTestimonial += ((char* ) eb.buffer.memory.ptr)[i];
 			}
 			testimonials.push(newTestimonial);
+			SaveTestimonials();
 			zr_edit_box_clear(&eb);
 			newTestimonial = "";
+		}
+		if (zr_button_text(&context, "Main Menu", ZR_BUTTON_DEFAULT)) {
+			changeWindow(CUSTOMER_MENU);
 		}
 
 	}

@@ -18,11 +18,9 @@ private:
 
 	unsigned int product2State;
 	int product2Value;
-	char product2ValueChar;
 
 	unsigned int product3State;
 	int product3Value;
-	char product3ValueChar;
 
 	double totalCost;
 
@@ -31,6 +29,10 @@ public:
 	OrderProducts(Member **m, int *n_m) : Window(m, n_m) {
 		ID = ORDER_PRODUCTS;
 		state = 0;
+		totalCost = 0;
+		product1Value = 0;
+		product2Value = 0;
+		product3Value = 0;
 	}
 	~OrderProducts() {}
 	void render_main(zr_window *);
