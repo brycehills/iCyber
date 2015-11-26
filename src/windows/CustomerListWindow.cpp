@@ -4,6 +4,8 @@ void CustomerListWindow::render_main(zr_window *window) {
 	zr_context context;
 	zr_begin(&context, window);
 	{
+		customers.clear();
+		LoadCustomers();
 		zr_header(&context, "Customer List", 0, 0, ZR_HEADER_LEFT);
 		zr_layout_row_dynamic(&context, 30, 1);
 		if (zr_button_text(&context, "Main Menu", ZR_BUTTON_DEFAULT)) {

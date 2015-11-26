@@ -64,6 +64,15 @@ void Login::render_main(zr_window *window) {
 					state = 2;
 				}
 			}
+			zr_layout_row_dynamic(&context, 30, 1);
+			if (zr_button_text(&context, "DEBUG ONLY: Quick Admin Login",
+					ZR_BUTTON_DEFAULT)) {
+				changeWindow(ADMIN);
+			}
+			if (zr_button_text(&context, "DEBUG ONLY: Quick Customer Login",
+					ZR_BUTTON_DEFAULT)) {
+				changeWindow(CUSTOMER_MENU);
+			}
 		}
 	}
 	zr_end(&context, window);

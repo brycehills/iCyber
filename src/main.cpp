@@ -8,6 +8,7 @@
 #include "windows/Testimonials.h"
 #include "windows/CustomerMenu.h"
 #include "windows/CustomerListWindow.h"
+#include "windows/AddUser.h"
 #include "gui/zahnrad.h"
 #include "GUI.h"
 #include "Member/Member.h"
@@ -29,7 +30,7 @@ int window_index = 0;
 int window; //for saving window data
 
 //Number of windows, add as you move forward
-int num_windows = 7;
+int num_windows = 8;
 
 int *num_members;
 Member **members; //sexy right?
@@ -117,6 +118,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prev, LPSTR lpCmdLine, int sho
     windows[TESTIMONIALS] = new Testimonials(members, num_members);
     windows[CUSTOMER_MENU] = new CustomerMenu(members, num_members);
     windows[CUSTOMER_LIST] = new CustomerListWindow(members, num_members);
+    windows[ADD_USER] = new AddUser(members, num_members);
     //load your windows here!
 
     gui.running = true;

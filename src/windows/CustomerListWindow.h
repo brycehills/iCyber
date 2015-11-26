@@ -14,7 +14,6 @@ public:
 	~CustomerListWindow() {}
 	void render_main(zr_window *);
 	void init() {
-
 	}
 };
 

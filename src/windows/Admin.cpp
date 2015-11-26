@@ -24,6 +24,9 @@ void Admin::render_main(zr_window *window) {
 		if (zr_button_text(&context, "Customer List", ZR_BUTTON_DEFAULT)) {
 			changeWindow (CUSTOMER_LIST);
 		}
+		if (zr_button_text(&context, "Add Customer", ZR_BUTTON_DEFAULT)) {
+			changeWindow (ADD_USER);
+		}
 		if (zr_button_text(&context, "Log Off", ZR_BUTTON_DEFAULT)) {
 			changeWindow(LOGIN);
 		}

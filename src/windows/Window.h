@@ -18,6 +18,7 @@
 using namespace std;
 
 //make sure you add your window to the archive here!
+const int ADD_USER = 7;
 const int CUSTOMER_LIST = 6;
 const int CUSTOMER_MENU = 5;
 const int TESTIMONIALS = 4;
@@ -83,6 +84,26 @@ private:
 
 		inFile.close();
 	}
+protected:
+	Member **members;
+	int *num_members;
+	stack<string> testimonials;
+	vector<Customer> customers;
+public:
+	void * return_val;
+	int ID;
+	Window(Member **m, int *n_m) {
+		update_data(m, n_m);
+		set = false;
+		ID_c = 0;
+		return_val = NULL;
+		ID = -1;
+		update = false;
+		exit_prog = false;
+		// load
+		LoadTestimonials();
+		LoadCustomers();
+	}
 
 	void LoadCustomers() {
 		ifstream inFile;
@@ -112,15 +133,15 @@ private:
 			getline(inFile, name);
 			getline(inFile, street);
 			getline(inFile, stateZipCode);
-			if (!defaultFile) {
-				getline(inFile, tempString);
-				if (tempString == "true") {
-					receivedPamphlet = true;
-				}
-				else {
-					receivedPamphlet = false;
-				}
-			}
+//			if (!defaultFile) {
+//				getline(inFile, tempString);
+//				if (tempString == "true") {
+//					receivedPamphlet = true;
+//				}
+//				else {
+//					receivedPamphlet = false;
+//				}
+//			}
 			getline(inFile, rating);
 			getline(inFile, tempString);
 			if (tempString == "key") {
@@ -139,25 +160,33 @@ private:
 
 		inFile.close();
 	}
-protected:
-	Member **members;
-	int *num_members;
-	stack<string> testimonials;
-	vector<Customer> customers;
-public:
-	void * return_val;
-	int ID;
-	Window(Member **m, int *n_m) {
-		update_data(m, n_m);
-		set = false;
-		ID_c = 0;
-		return_val = NULL;
-		ID = -1;
-		update = false;
-		exit_prog = false;
-		// load
-		LoadTestimonials();
-		LoadCustomers();
+
+	void SaveCustomers() {
+		ofstream outFile;
+		vector<Customer> outputVector;
+
+		outputVector = customers;
+
+		outFile.open("SavedCustomers.txt");
+
+		while (!outputVector.empty()) {
+			outFile << outputVector.front().GetName() << endl;
+			outFile << outputVector.front().GetStreet() << endl;
+			outFile << outputVector.front().GetStateZipCode() << endl;
+			outFile << outputVector.front().GetRating() << endl;
+			if (outputVector.front().GetIsKey()) {
+				outFile << "key";
+			}
+			else {
+				outFile << "nice to have";
+			}
+			outputVector.erase(outputVector.begin());
+			// only make a new line if it isn't the last item
+			if (!outputVector.empty()) {
+				outFile << endl;
+			}
+		}
+		outFile.close();
 	}
 
 	void SaveTestimonials() {
@@ -183,6 +212,7 @@ public:
 				outFile << endl;
 			}
 		}
+		outFile.close();
 	}
 
 	void issue_update() {
