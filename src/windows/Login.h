@@ -14,7 +14,7 @@ private:
 	string username;
 	string password;
 public:
-	Login(Member **m, int *n_m) : Window(m, n_m) {
+	Login(stack<string>* t, vector<Customer>* c, int *c_i) : Window(t, c, c_i) {
 		ID = LOGIN;
 		state = 0;
 		adminLogin = false;

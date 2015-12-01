@@ -9,7 +9,7 @@ private:
 	zr_char edit_buffer[MAX_BUFFER];
 	string newTestimonial;
 public:
-	Testimonials(Member **m, int *n_m) : Window(m, n_m) {
+	Testimonials(stack<string>* t, vector<Customer>* c, int *c_i) : Window(t, c, c_i) {
 		ID = TESTIMONIALS;
 		zr_edit_box_init_fixed(&eb, edit_buffer, 999, NULL, NULL);
 	}

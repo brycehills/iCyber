@@ -1,13 +1,12 @@
-#include "AddUser.h"
-#include <sstream>
+#include "EditCustomer.h"
 
-void AddUser::render_main(zr_window *window) {
+void EditCustomer::render_main(zr_window *window) {
 	zr_context context;
 	zr_begin(&context, window);
 	{
 		static const char *ratings[] = { "very interested",
 				"somewhat interested", "not interested", "never call again" };
-		zr_header(&context, "Add Customer", 0, 0, ZR_HEADER_LEFT);
+		zr_header(&context, "Edit Customer", 0, 0, ZR_HEADER_LEFT);
 
 		zr_layout_row_static(&context, 30, 240, 3);
 		zr_label(&context, "Name:", ZR_TEXT_LEFT);
@@ -32,8 +31,7 @@ void AddUser::render_main(zr_window *window) {
 		zr_label(&context, "State Zip Code:", ZR_TEXT_LEFT);
 		zr_editbox(&context, &stateZipCodeBox);
 		if (isStateEmpty) {
-			zr_label(&context,
-					"Could not add: Please enter an address",
+			zr_label(&context, "Could not add: Please enter an address",
 					ZR_TEXT_LEFT);
 		}
 
@@ -156,4 +154,3 @@ void AddUser::render_main(zr_window *window) {
 	}
 	zr_end(&context, window);
 }
-

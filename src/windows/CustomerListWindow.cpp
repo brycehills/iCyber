@@ -50,15 +50,19 @@ void CustomerListWindow::render_main(zr_window *window) {
 				output = "Rating: " + CustomerOutputVector.front().GetRating();
 				zr_label(&context, output.c_str(), ZR_TEXT_LEFT);
 			}
-			CustomerOutputVector.erase(CustomerOutputVector.begin());
-			if ((isCheckBoxUnTicked == 0
-					&& CustomerOutputVector.front().GetIsKey()
-					&& !CustomerOutputVector.empty()) |(isCheckBoxUnTicked == 1
-					&& !CustomerOutputVector.empty())
-					) {
-				zr_label(&context, "----------------------------",
-						ZR_TEXT_LEFT);
+			if (zr_button_text(&context, "Edit",
+					ZR_BUTTON_DEFAULT)) {
+				//changeWindow(ADMIN);
 			}
+			CustomerOutputVector.erase(CustomerOutputVector.begin());
+//			if ((isCheckBoxUnTicked == 0
+//					&& CustomerOutputVector.front().GetIsKey()
+//					&& !CustomerOutputVector.empty()) |(isCheckBoxUnTicked == 1
+//					&& !CustomerOutputVector.empty())
+//					) {
+//				zr_label(&context, "----------------------------",
+//						ZR_TEXT_LEFT);
+//			}
 		}
 
 		zr_checkbox(&context, "Key only", &isCheckBoxUnTicked);

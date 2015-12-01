@@ -5,7 +5,7 @@
 
 class CustomerMenu : public Window {
 public:
-	CustomerMenu(Member **m, int *n_m) : Window(m, n_m) {
+	CustomerMenu(stack<string>* t, vector<Customer>* c, int *c_i) : Window(t, c, c_i) {
 		ID = CUSTOMER_MENU;
 	}
 	~CustomerMenu() {}

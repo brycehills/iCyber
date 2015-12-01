@@ -7,24 +7,24 @@
 #include <string>
 #include <sstream>
 #include <iostream>
-#include "../Member/Member.h"
 #include "../gui/zahnrad.h"
 #include "../util/Customer.h" // customer class
 #include <vector> // vector for customers
 #include <stack> // testimonial stack
 #include <fstream> // ifstream/ofstream
 #include <algorithm> // sort
+#include <limits> // number limits
 
 using namespace std;
 
 //make sure you add your window to the archive here!
-const int ADD_USER = 7;
-const int CUSTOMER_LIST = 6;
-const int CUSTOMER_MENU = 5;
-const int TESTIMONIALS = 4;
-const int ORDER_PRODUCTS = 3;
-const int ADMIN = 2;
-const int LOADER = 1;
+const int EDIT_CUSTOMER = 7;
+const int ADD_USER = 6;
+const int CUSTOMER_LIST = 5;
+const int CUSTOMER_MENU = 4;
+const int TESTIMONIALS = 3;
+const int ORDER_PRODUCTS = 2;
+const int ADMIN = 1;
 const int LOGIN = 0;
 
 namespace patch { //this is for to_string
@@ -39,180 +39,21 @@ class Window {
 private:
 	bool set, update, exit_prog;
 	int ID_c;
-
-	/**************************************************************************
-	 * Function: InFileExistsAndIsNotEmpty
-	 *
-	 * This function checks if a text file exists and is not empty.
-	 *
-	 * Returns: Returns a bool of whether a file exists and is not empty.
-	 **************************************************************************/
-	bool InFileExistsAndIsNotEmpty(string inFileName) {
-		ifstream inFile;
-		bool existsAndNotEmpty;
-		existsAndNotEmpty = false;
-
-		inFile.open(inFileName.c_str());
-
-		if (inFile) {
-			if (inFile.peek() == std::ifstream::traits_type::eof()) {
-				existsAndNotEmpty = false;
-			} else {
-				existsAndNotEmpty = true;
-				inFile.close();
-			}
-		} else {
-			existsAndNotEmpty = false;
-		}
-
-		return existsAndNotEmpty;
-	}
-
-	void LoadTestimonials() {
-		ifstream inFile;
-		string newTestimonial;
-		if (InFileExistsAndIsNotEmpty("SavedTestimonials.txt")) {
-			inFile.open("SavedTestimonials.txt");
-		} else {
-			inFile.open("DefaultTestimonials.txt");
-		}
-
-		while (!inFile.eof()) {
-			getline(inFile, newTestimonial);
-			testimonials.push(newTestimonial);
-		}
-
-		inFile.close();
-	}
 protected:
-	Member **members;
-	int *num_members;
-	stack<string> testimonials;
-	vector<Customer> customers;
+	stack<string>* testimonials;
+	vector<Customer>* customers;
+	int *customer_index;
 public:
 	void * return_val;
 	int ID;
-	Window(Member **m, int *n_m) {
-		update_data(m, n_m);
+	Window(stack<string>* t, vector<Customer>* c, int *c_i) {
+		update_data(t, c, c_i);
 		set = false;
 		ID_c = 0;
 		return_val = NULL;
 		ID = -1;
 		update = false;
 		exit_prog = false;
-		// load
-		LoadTestimonials();
-		LoadCustomers();
-	}
-
-	void LoadCustomers() {
-		ifstream inFile;
-		string newTestimonial;
-		bool defaultFile;
-		Customer *newCustomer;
-		string name;
-		string street;
-		string stateZipCode;
-		bool receivedPamphlet;
-		bool isKey;
-		string rating;
-		string tempString;
-
-		defaultFile = true;
-		receivedPamphlet = false;
-
-		if (InFileExistsAndIsNotEmpty("SavedCustomers.txt")) {
-			inFile.open("SavedCustomers.txt");
-			defaultFile = false;
-		} else {
-			inFile.open("DefaultCustomers.txt");
-			defaultFile = true;
-		}
-
-		while (!inFile.eof()) {
-			getline(inFile, name);
-			getline(inFile, street);
-			getline(inFile, stateZipCode);
-//			if (!defaultFile) {
-//				getline(inFile, tempString);
-//				if (tempString == "true") {
-//					receivedPamphlet = true;
-//				}
-//				else {
-//					receivedPamphlet = false;
-//				}
-//			}
-			getline(inFile, rating);
-			getline(inFile, tempString);
-			if (tempString == "key") {
-				isKey = true;
-			}
-			else {
-				isKey = false;
-			}
-			newCustomer = new Customer(name, street, stateZipCode,
-					receivedPamphlet, isKey, rating);
-
-			customers.push_back(*newCustomer);
-		}
-
-		std::sort(customers.begin(), customers.end());
-
-		inFile.close();
-	}
-
-	void SaveCustomers() {
-		ofstream outFile;
-		vector<Customer> outputVector;
-
-		outputVector = customers;
-
-		outFile.open("SavedCustomers.txt");
-
-		while (!outputVector.empty()) {
-			outFile << outputVector.front().GetName() << endl;
-			outFile << outputVector.front().GetStreet() << endl;
-			outFile << outputVector.front().GetStateZipCode() << endl;
-			outFile << outputVector.front().GetRating() << endl;
-			if (outputVector.front().GetIsKey()) {
-				outFile << "key";
-			}
-			else {
-				outFile << "nice to have";
-			}
-			outputVector.erase(outputVector.begin());
-			// only make a new line if it isn't the last item
-			if (!outputVector.empty()) {
-				outFile << endl;
-			}
-		}
-		outFile.close();
-	}
-
-	void SaveTestimonials() {
-		ofstream outFile;
-		stack<string> popStack;
-		stack<string> saveStack;
-
-		popStack = testimonials;
-
-		// put testimonials into saveStack in reverse order
-		while (!popStack.empty()) {
-			saveStack.push(popStack.top());
-			popStack.pop();
-		}
-
-		outFile.open("SavedTestimonials.txt");
-
-		while (!saveStack.empty()) {
-			outFile << saveStack.top();
-			saveStack.pop();
-			// only make a new line if it isn't the last item
-			if (!saveStack.empty()) {
-				outFile << endl;
-			}
-		}
-		outFile.close();
 	}
 
 	void issue_update() {
@@ -227,14 +68,16 @@ public:
 		return false;
 	}
 
-	void update_data(Member **m, int *n_m) { //don't call this function
-		members = m;
-		num_members = n_m;
+	void update_data(stack<string>* t, vector<Customer>* c, int *c_i) { //don't call this function
+		testimonials = t;
+		customers = c;
+		customer_index = c_i;
 	}
 
-	void set_data(Member **&m, int *&n_m) { //don't call this function
-		m = members;
-		n_m = num_members;
+	void set_data(stack<string> *&t, vector<Customer> *&c, int *&c_i) { //don't call this function
+		t = testimonials;
+		c = customers;
+		c_i = customer_index;
 	}
 
 	virtual ~Window() {

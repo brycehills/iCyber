@@ -21,8 +21,15 @@ public:
 	//CONSTRUCTORS
 	Customer();
 	Customer(string customerName, string customerStreet,
+			string customerStateZipCode, bool customerIsKey,
+			string customerRating);
+	Customer(string customerName, string customerStreet,
 			string customerStateZipCode, bool customerPamphlet,
-			bool customerIsKey, string customerRating);
+			bool customerIsKey, string customerRating,
+			string customerUsername, string customerPassword,
+			unsigned int customerMinimumPurchases,
+			unsigned int customerExtremePurchases,
+			unsigned int customerUltimatePurchases);
 
 	//DESTRUCTOR
 	~Customer();
@@ -120,25 +127,46 @@ public:
 	bool GetIsKey();
 
 	/************************************************************************
-	 * int GetRating();
+	 * string GetRating();
 	 * ACCESSOR: none
-	 * Return: int - rating of customer
+	 * Return: string - rating of customer
 	 ***********************************************************************/
 	string GetRating();
 
-
-	/******************
-	 ***  METHODS   ***
-	 ******************/
-
-
+	/************************************************************************
+	 * string GetUsername();
+	 * ACCESSOR: none
+	 * Return: string - username of customer
+	 ***********************************************************************/
+	string GetUsername();
 
 	/************************************************************************
-	 * string Print()
-	 * MUTATOR: none
-	 * Return: a string with all the Customer's data
+	 * string GetPassword();
+	 * ACCESSOR: none
+	 * Return: string - password of customer
 	 ***********************************************************************/
-	string Print();
+	string GetPassword();
+
+	/************************************************************************
+	 * string GetMinimumPurchases();
+	 * ACCESSOR: none
+	 * Return: unsigned int - # of minimum packages purchased
+	 ***********************************************************************/
+	unsigned int GetMinimumPurchases();
+
+	/************************************************************************
+	 * string GetExtremePurchases();
+	 * ACCESSOR: none
+	 * Return: unsigned int - # of extreme packages purchased
+	 ***********************************************************************/
+	unsigned int GetExtremePurchases();
+
+	/************************************************************************
+	 * string GetUltimatePurchases();
+	 * ACCESSOR: none
+	 * Return: unsigned int - # of ultimate packages purchased
+	 ***********************************************************************/
+	unsigned int GetUltimatePurchases();
 
 	/******************
 	 ***  UTILITY ***
@@ -161,6 +189,11 @@ private:
     bool receivedPamphlet;	/// OUT - if customer has received pamphlet or not
     bool isKey;				/// OUT - tells if Customer is regular or executive
     string rating;			/// OUT - Customer rating
+    string username;
+    string password;
+    unsigned int minimumPurchases;
+    unsigned int extremePurchases;
+    unsigned int ultimatePurchases;
 };
 
 

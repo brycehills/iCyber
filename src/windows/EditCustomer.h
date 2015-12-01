@@ -1,9 +1,9 @@
-#ifndef WINDOWS_ADDUSER_H_
-#define WINDOWS_ADDUSER_H_
+#ifndef WINDOWS_EDITCUSTOMER_H_
+#define WINDOWS_EDITCUSTOMER_H_
 
 #include "Window.h"
 
-class AddUser : public Window {
+class EditCustomer: public Window {
 private:
 	zr_edit_box nameBox;
 	zr_edit_box streetBox;
@@ -37,11 +37,13 @@ private:
 	bool isStateEmpty;
 	bool isInvalidCustomer;
 public:
-	AddUser(stack<string>* t, vector<Customer>* c, int *c_i) : Window(t, c, c_i) {
-		ID = ADD_USER;
+	EditCustomer(stack<string>* t, vector<Customer>* c, int *c_i) : Window(t, c, c_i) {
+		ID = EDIT_CUSTOMER;
 		zr_edit_box_init_fixed(&nameBox, name_buffer, MAX_BUFFER, NULL, NULL);
-		zr_edit_box_init_fixed(&streetBox, street_buffer, MAX_BUFFER, NULL, NULL);
-		zr_edit_box_init_fixed(&stateZipCodeBox, stateZipCode_buffer, MAX_BUFFER, NULL, NULL);
+		zr_edit_box_init_fixed(&streetBox, street_buffer, MAX_BUFFER, NULL,
+				NULL);
+		zr_edit_box_init_fixed(&stateZipCodeBox, stateZipCode_buffer,
+				MAX_BUFFER, NULL, NULL);
 		isNameDuplicate = false;
 		currentRatingInt = 0;
 		ratingComboBoxState = 0;
@@ -55,7 +57,8 @@ public:
 		isInvalidCustomer = false;
 		isStreetEmpty = false;
 	}
-	~AddUser() {}
+	~EditCustomer() {
+	}
 	void render_main(zr_window *);
 	void init() {
 		zr_edit_box_clear(&nameBox);
@@ -67,7 +70,4 @@ public:
 	}
 };
 
-
-
-
-#endif /* WINDOWS_ADDUSER_H_ */
+#endif /* WINDOWS_EDITCUSTOMER_H_ */

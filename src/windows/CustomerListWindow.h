@@ -7,7 +7,7 @@ class CustomerListWindow : public Window {
 private:
 	int isCheckBoxUnTicked;
 public:
-	CustomerListWindow(Member **m, int *n_m) : Window(m, n_m) {
+	CustomerListWindow(stack<string>* t, vector<Customer>* c, int *c_i) : Window(t, c, c_i) {
 		ID = CUSTOMER_LIST;
 		isCheckBoxUnTicked = 1;
 	}

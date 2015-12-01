@@ -10,7 +10,7 @@ private:
 	zr_char edit_buffer[MAX_BUFFER];
 	int state;
 public:
-	Admin(Member **m, int *n_m) : Window(m, n_m) {
+	Admin(stack<string>* t, vector<Customer>* c, int *c_i) : Window(t, c, c_i) {
 		ID = ADMIN;
 		state = 0;
 		zr_edit_box_init_fixed(&eb, edit_buffer, MAX_BUFFER, NULL, NULL);

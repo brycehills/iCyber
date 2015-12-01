@@ -1,6 +1,8 @@
 #include <windows.h>
 #include <windowsx.h>
 #include <iostream>
+#include <vector>
+#include <stack>
 #include "windows/Loader.h"
 #include "windows/Admin.h"
 #include "windows/Login.h"
@@ -11,6 +13,7 @@
 #include "windows/AddUser.h"
 #include "gui/zahnrad.h"
 #include "GUI.h"
+#include "util/Loader.h"
 #include "Member/Member.h"
 
 #define WINDOW_WIDTH 800
@@ -32,8 +35,9 @@ int window; //for saving window data
 //Number of windows, add as you move forward
 int num_windows = 8;
 
-int *num_members;
-Member **members; //sexy right?
+stack<string> *testimonials;
+vector<Customer> *customers;
+int *customer_index;
 
 //INSTRUCTIONS TO ADD gdi32!!
 //"BulkClub"->Properties->C/C++ Build->Settings->
@@ -105,20 +109,22 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prev, LPSTR lpCmdLine, int sho
     set_style(&gui.style);
 
     //this is where you initialize all the program specific stuff
-    members = new Member*[MAX_ITEMS];
-	num_members = new int;
-	*num_members = 0;
+	testimonials = new stack<string>;
+	customers = new vector<Customer>;
+	customer_index = new int;
+	LoadTestimonials(testimonials);
+	LoadCustomers(customers);
+
 
     windows = new Window*[num_windows];
     for (int i = 0; i < num_windows; i++) windows[i] = NULL;
-    windows[LOGIN] = new Login(members, num_members);
-    windows[LOADER] = new Loader(members, num_members);
-    windows[ADMIN] = new Admin(members, num_members);
-    windows[ORDER_PRODUCTS] = new OrderProducts(members, num_members);
-    windows[TESTIMONIALS] = new Testimonials(members, num_members);
-    windows[CUSTOMER_MENU] = new CustomerMenu(members, num_members);
-    windows[CUSTOMER_LIST] = new CustomerListWindow(members, num_members);
-    windows[ADD_USER] = new AddUser(members, num_members);
+    windows[LOGIN] = new Login(testimonials, customers, customer_index);
+    windows[ADMIN] = new Admin(testimonials, customers, customer_index);
+    windows[ORDER_PRODUCTS] = new OrderProducts(testimonials, customers, customer_index);
+    windows[TESTIMONIALS] = new Testimonials(testimonials, customers, customer_index);
+    windows[CUSTOMER_MENU] = new CustomerMenu(testimonials, customers, customer_index);
+    windows[CUSTOMER_LIST] = new CustomerListWindow(testimonials, customers, customer_index);
+    windows[ADD_USER] = new AddUser(testimonials, customers, customer_index);
     //load your windows here!
 
     gui.running = true;

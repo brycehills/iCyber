@@ -1,0 +1,77 @@
+Bob
+fewfewafaw
+fwafw
+very interested
+key
+false
+temp username
+temp password
+0
+0
+0
+CIA
+987 Jefferson Blvd
+Baltimore, MD 00754
+not interested
+key
+false
+CIA0
+password
+0
+0
+0
+FBI
+1234 Lincoln Ave.
+Washington D.C. 00234
+somewhat interested
+key
+false
+FBI0
+password
+0
+0
+0
+Los Angeles Airport
+1 World Way 
+Los Angeles, CA 90045 
+very interested
+key
+false
+Los Angeles Airport0
+password
+0
+0
+0
+Los Angeles Angels
+2000 East Gene Autry Way
+Anaheim, CA 92806
+very interested
+key
+false
+Los Angeles Angels0
+password
+0
+0
+0
+Los Angeles Dodgers
+1000 Elysian Park Avenue 
+Los Angeles, CA 9 0012
+very interested
+nice to have
+false
+Los Angeles Dodgers0
+password
+0
+0
+0
+Saddleback College
+28000 Marguerite Pkwy
+Mission Viejo, CA 92692
+somewhat interested
+nice to have
+false
+Saddleback College0
+password
+0
+0
+0
