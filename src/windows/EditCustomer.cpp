@@ -249,7 +249,8 @@ void EditCustomer::render_main(zr_window *window) {
 				// otherwise search for duplicates
 				SearchCustomerVector = *customers;
 				searchIndex = 0;
-				while (!SearchCustomerVector.empty() && !isUsernameDuplicate && searchIndex != *customer_index) {
+				while (!SearchCustomerVector.empty() && !isUsernameDuplicate
+						&& searchIndex != *customer_index) {
 					if (SearchCustomerVector.front().GetUsername()
 							== username) {
 						isUsernameDuplicate = true;

@@ -8,10 +8,12 @@ void CustomerMenu::render_main(zr_window *window) {
 		if (*customer_index == -1) {
 			*customer_index = 0;
 		}
-		std::ostringstream customerStream;
-		string output;
-		output = "Menu - Logged in as "
-				+ customers->at(*customer_index).GetName();
+
+		customerNameStream.str("");
+		customerNameStream.clear();
+		customerNameStream << "Menu - logged in as "
+			<< customers->at(*customer_index);
+		output = customerNameStream.str();
 		zr_header(&context, output.c_str(), 0, 0, ZR_HEADER_LEFT);
 		if (state == 1) {
 			zr_layout_row_dynamic(&context, 30, 1);

@@ -5,7 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>
-#include "../util/StringOperations.h" // usernames/passwords
+#include "../util/StringOperations.h" // usernames/passwords/toupper
 
 using namespace std;
 
@@ -204,6 +204,14 @@ public:
 	 * other object's name
 	 ***********************************************************************/
 	bool operator<(const Customer &otherCustomer) const;
+
+	/************************************************************************
+	 * ostream& Customer::operator<< (ostream& output, Customer& outputCustomer)
+	 * DESCRIPTION: Overloads << operator to display customer name
+	 * MUTATOR: none
+	 * Return: ostream of customer's name
+	 ***********************************************************************/
+	friend ostream& operator<< (ostream& output, Customer& outputCustomer);
 
     static double const minimumPackageCost = 14.95;
     static double const extremePackageCost = 34.95;

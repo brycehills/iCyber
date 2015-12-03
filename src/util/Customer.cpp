@@ -273,5 +273,16 @@ unsigned int Customer::GetUltimatePurchases() {
  * other object's name
  ***********************************************************************/
 bool Customer::operator<(const Customer &otherCustomer) const {
-	return name < otherCustomer.name;
+	return toupper(name) < toupper(otherCustomer.name);
+}
+
+/************************************************************************
+ * ostream& Customer::operator<< (ostream& output, Customer& outputCustomer)
+ * DESCRIPTION: Overloads << operator to display customer name
+ * MUTATOR: none
+ * Return: ostream of customer's name
+ ***********************************************************************/
+ostream& operator<< (ostream& output, Customer& outputCustomer) {
+	output << outputCustomer.name;
+	return output;
 }

@@ -9,5 +9,6 @@ string GenerateUsername (string theString);
 string GeneratePassword ();
 string trimSpaces (string theString);
 bool hasSpaces (string theString);
+string toupper(string theString);
 
 #endif /* UTIL_STRINGOPERATIONS_H_ */
