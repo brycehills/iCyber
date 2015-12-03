@@ -28,10 +28,10 @@
           echo "<p>";
           echo "iCyber Security solutions is a cyber security program, that's it! It offers top notch ";
           echo "security solution for your computer so that you can stay safe on the internet. The ";
-          echo "internet is chalk full of dangerous webpages that lerk to threaten your security everyday. ";
-          echo "With intelligently designed firewalls to deal with external attacks and ruthless process ";
-          echo "process scanners and sand box executions for suspicious programs you cannot go wrong by ";
-          echo "using our security program or we GURANTEE your money back!";
+          echo "internet is chalk full of dangerous webpages that lurk to threaten your security every day. ";
+          echo "With intelligently designed firewalls to deal with external attacks and ruthless ";
+          echo "process scanners and sand box executions for suspicious programs, you cannot go wrong by ";
+          echo "using our security program or we guarantee your money back!";
           echo "</p>";
       ?>
       <h3> Products </h3>
@@ -60,24 +60,24 @@
                <h4 align="Center"> Ultimate </h4>
                <p align="Center"> Offers the following support in this edition </p>
                <ul>
-                  <li> Highest level of protection offered (firewall and antivirus) </li>
+                  <li> Highest level of protection offered (firewall and anti-virus) </li>
                   <li> 24/7 chat and support desk options available </li>
                   <li> Enterprise pricing at $90.00/month </li>
                </ul>
             </td>
          </tr>
       </table>
-      <h3> Gurantee </h3>
-      <p> Like was listed above, we do offer a gurantee that our product works or you will receive a FULL refund! </p>
+      <h3> Guarantee </h3>
+      <p> As was listed above, we do offer a guarantee that our product works or you will receive a FULL refund! </p>
     </div>
     <div id="menu1" class="tab-pane fade">
       <h3> Why choose us </h3>
       <?php
           echo "<p>";
-          echo "Here at iCyber security we under stand that when you are choosing security software for ";
-          echo "your computer you have many many options. So why choose us? The main reason is because ";
+          echo "Here at iCyber security we understand that when you are choosing security software for ";
+          echo "your computer you have many options. So why choose us? The main reason is because ";
           echo "this company's founders are deeply rooted in the world of hacking. Who better to understand ";
-          echo "how hackers will try to penetrate your system then hackers themselve! You're probably asking, ";
+          echo "how hackers will try to penetrate your system then hackers themselves! You're probably asking, ";
           echo "why should we trust self professed hackers, how do we know this will work? How do we know that ";
           echo "iCyber Security isn't here just for my money? As mentioned before we guarantee your product ";
           echo "will protect you or you'll get your money back! So there are no scams!";
@@ -110,7 +110,7 @@
     <div id="menu3" class="tab-pane fade">
       <h3> Help </h3>
       <h4> Operating iCyber Security </h4>
-      <p> Operating our program is very simple. Please take a look at the secion for the window that applies to you:</p>
+      <p> Operating our program is very simple. Please take a look at the section for the window that applies to you:</p>
     </div>
     <div id="menu4" class="tab-pane fade">
     <h3> Contact us </h3>
@@ -134,4 +134,5 @@
   </div>
 </div>
 </body>
+ 
 </html>

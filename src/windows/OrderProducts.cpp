@@ -85,6 +85,7 @@ void OrderProducts::render_main(zr_window *window) {
 				customers->at(*customer_index).AddExtremePackage(product2Value);
 				customers->at(*customer_index).AddUltimatePackage(product3Value);
 				SaveCustomers(customers);
+				issue_update();
 				product1Value = 0;
 				product2Value = 0;
 				product3Value = 0;

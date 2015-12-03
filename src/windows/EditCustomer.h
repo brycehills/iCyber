@@ -32,6 +32,8 @@ private:
 	string username;
 	string password;
 
+	unsigned int searchIndex;
+
 	string newCustomerNotification;
 
 	bool isCustomerChanged;
@@ -58,6 +60,8 @@ private:
 	bool isPasswordInvalid;
 	bool isInvalidCustomer;
 
+	int findCustomer(string searchName);
+
 public:
 	EditCustomer(stack<string>* t, vector<Customer>* c, int *c_i) :
 		Window(t, c, c_i) {
@@ -72,6 +76,7 @@ public:
 		zr_edit_box_init_fixed(&passwordBox, password_buffer, MAX_BUFFER, NULL,
 				NULL);
 		isNameDuplicate = false;
+		searchIndex = 0;
 		currentRatingInt = 0;
 		ratingComboBoxState = 0;
 		product1Value = 0;
@@ -96,6 +101,7 @@ public:
 		zr_edit_box_clear(&usernameBox);
 		zr_edit_box_clear(&passwordBox);
 		isNameDuplicate = false;
+		searchIndex = 0;
 		currentRatingInt = 0;
 		ratingComboBoxState = 0;
 //		product1Value = customers->at(*customer_index).GetMinimumPurchases();

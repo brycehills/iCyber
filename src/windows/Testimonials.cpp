@@ -30,6 +30,7 @@ void Testimonials::render_main(zr_window *window) {
 			}
 			testimonials->push(newTestimonial);
 			SaveTestimonials(testimonials);
+			issue_update();
 			zr_edit_box_clear(&eb);
 			newTestimonial = "";
 		}

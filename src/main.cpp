@@ -17,7 +17,7 @@
 #include "util/Loader.h"
 #include "Member/Member.h"
 
-#define WINDOW_WIDTH 800
+#define WINDOW_WIDTH 1024
 #define WINDOW_HEIGHT 600
 #define MAX_MEMORY  (32 * 1024)
 #define MAX_ITEMS 256

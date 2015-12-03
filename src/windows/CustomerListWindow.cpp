@@ -116,6 +116,7 @@ void CustomerListWindow::render_main(zr_window *window) {
 				if (zr_button_text(&context, editButtonString.c_str(),
 						ZR_BUTTON_DEFAULT)) {
 					*customer_index = i;
+					issue_update();
 					changeWindow(EDIT_CUSTOMER);
 				}
 				removeButtonString = "Remove "

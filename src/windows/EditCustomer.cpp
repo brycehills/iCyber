@@ -1,6 +1,33 @@
 #include "EditCustomer.h"
 #include <sstream>
 
+int EditCustomer::findCustomer(string searchName) {
+	bool foundCustomer;
+	int returnIndex;
+
+	// initialize
+	foundCustomer = false;
+	returnIndex = 0;
+
+	// get a copy of the customer vector for search
+	vector<Customer> SearchCustomerVector = *customers;
+	while (!SearchCustomerVector.empty() && !foundCustomer) {
+		if (SearchCustomerVector.front().GetName() == searchName) {
+			foundCustomer = true;
+		} else {
+			returnIndex++;
+			SearchCustomerVector.erase(SearchCustomerVector.begin());
+		}
+	}
+	if (!foundCustomer) {
+		returnIndex = -1;
+	}
+
+	return returnIndex;
+}
+
+
+
 void EditCustomer::render_main(zr_window *window) {
 	zr_context context;
 	zr_begin(&context, window);
@@ -148,6 +175,7 @@ void EditCustomer::render_main(zr_window *window) {
 			isPasswordInvalid = false;
 			name = "";
 			street = "";
+			searchIndex = 0;
 			stateZipCode = "";
 			username = "";
 			password = "";
@@ -165,11 +193,13 @@ void EditCustomer::render_main(zr_window *window) {
 				// trim spaces
 				name = trimSpaces(name);
 				SearchCustomerVector = *customers;
+				searchIndex = 0;
 				while (!SearchCustomerVector.empty() && !isNameDuplicate) {
-					if (SearchCustomerVector.front().GetName() == name) {
+					if (SearchCustomerVector.front().GetName() == name && searchIndex != *customer_index) {
 						isNameDuplicate = true;
 						isInvalidCustomer = true;
 					} else {
+						searchIndex++;
 						SearchCustomerVector.erase(
 								SearchCustomerVector.begin());
 					}
@@ -218,12 +248,14 @@ void EditCustomer::render_main(zr_window *window) {
 			} else {
 				// otherwise search for duplicates
 				SearchCustomerVector = *customers;
-				while (!SearchCustomerVector.empty() && !isUsernameDuplicate) {
+				searchIndex = 0;
+				while (!SearchCustomerVector.empty() && !isUsernameDuplicate && searchIndex != *customer_index) {
 					if (SearchCustomerVector.front().GetUsername()
 							== username) {
 						isUsernameDuplicate = true;
 						isInvalidCustomer = true;
 					} else {
+						searchIndex++;
 						SearchCustomerVector.erase(
 								SearchCustomerVector.begin());
 					}
@@ -266,7 +298,9 @@ void EditCustomer::render_main(zr_window *window) {
 						product1Value, product2Value, product3Value);
 
 				std::sort(customers->begin(), customers->end());
+				*customer_index = findCustomer(name);
 				SaveCustomers(customers);
+				issue_update();
 				isCustomerChanged = true;
 			}
 
@@ -276,6 +310,7 @@ void EditCustomer::render_main(zr_window *window) {
 			changeWindow(ADMIN);
 		}
 		if (isCustomerChanged) {
+			cout << *customer_index;
 			output = "You have changed customer "
 					+ customers->at(*customer_index).GetName()
 					+ "'s information";

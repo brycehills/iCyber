@@ -230,6 +230,7 @@ void AddUser::render_main(zr_window *window) {
 
 				std::sort(customers->begin(), customers->end());
 				SaveCustomers(customers);
+				issue_update();
 				isNewCustomerAdded = true;
 			}
 

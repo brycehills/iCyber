@@ -93,6 +93,7 @@ void Login::render_main(zr_window *window) {
 					adminLogin = true;
 				} else {
 					*customer_index = GetCustomerLogin(username, password);
+					issue_update();
 					if (*customer_index != -1) {
 						state = 1;
 					} else {
