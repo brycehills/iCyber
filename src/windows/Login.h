@@ -13,13 +13,18 @@ private:
 	bool adminLogin;
 	string username;
 	string password;
+
+	int GetCustomerLogin(string username, string password);
 public:
 	Login(stack<string>* t, vector<Customer>* c, int *c_i) : Window(t, c, c_i) {
 		ID = LOGIN;
 		state = 0;
+		zr_edit_box_init_fixed(&usernameBox, username_buffer, MAX_BUFFER,
+				NULL, NULL);
+		zr_edit_box_init_fixed(&passwordBox, password_buffer, MAX_BUFFER,
+				NULL, NULL);
 		adminLogin = false;
-		zr_edit_box_init_fixed(&usernameBox, username_buffer, MAX_BUFFER, NULL, NULL);
-		zr_edit_box_init_fixed(&passwordBox, password_buffer, MAX_BUFFER, NULL, NULL);
+		*customer_index = -1;
 	}
 	~Login() {}
 	void render_main(zr_window *);
@@ -27,6 +32,7 @@ public:
 		zr_edit_box_clear(&usernameBox);
 		zr_edit_box_clear(&passwordBox);
 		state = 0;
+		adminLogin = false;
 	}
 };
 

@@ -1,25 +1,60 @@
 #include "Login.h"
 
+int Login::GetCustomerLogin(string username, string password) {
+	bool foundCustomer;
+	int returnIndex;
+
+	// initialize
+	foundCustomer = false;
+	returnIndex = 0;
+
+	// get a copy of the customer vector for search
+	vector<Customer> SearchCustomerVector = *customers;
+	while (!SearchCustomerVector.empty() && !foundCustomer) {
+		if (SearchCustomerVector.front().GetUsername() == username
+				&& SearchCustomerVector.front().GetPassword() == password) {
+			foundCustomer = true;
+		} else {
+			returnIndex++;
+			SearchCustomerVector.erase(SearchCustomerVector.begin());
+		}
+	}
+	if (!foundCustomer) {
+		returnIndex = -1;
+	}
+
+	return returnIndex;
+}
+
 void Login::render_main(zr_window *window) {
 	zr_context context;
 	zr_begin(&context, window);
 	{
 		if (state == 1) {
 			if (adminLogin) {
-				zr_header(&context, "Correct login - administrator", 0, 0, ZR_HEADER_LEFT);
-				adminLogin = false;
-				changeWindow(ADMIN);
-			}
-			else {
-				zr_header(&context, "Correct login - customer", 0, 0, ZR_HEADER_LEFT);
-				changeWindow(CUSTOMER_MENU);
+				zr_header(&context, "Welcome Administrator", 0, 0,
+						ZR_HEADER_LEFT);
+				zr_layout_row_dynamic(&context, 30, 1);
+				if (zr_button_text(&context, "Enter", ZR_BUTTON_DEFAULT)) {
+					changeWindow(ADMIN);
+				}
+			} else {
+				std::ostringstream customerStream;
+				string output;
+				output = "Welcome " + customers->at(*customer_index).GetName();
+				zr_header(&context, output.c_str(), 0, 0, ZR_HEADER_LEFT);
+				zr_layout_row_dynamic(&context, 30, 1);
+				if (zr_button_text(&context, "Enter", ZR_BUTTON_DEFAULT)) {
+					changeWindow(CUSTOMER_MENU);
+				}
 			}
 
 		} else {
 			zr_header(&context, "Login", 0, 0, ZR_HEADER_LEFT);
 			zr_layout_row_dynamic(&context, 30, 1);
 			if (state == 2) {
-				zr_label(&context, "Error! Wrong username/password", ZR_TEXT_LEFT);
+				zr_label(&context, "Error! Wrong username/password",
+						ZR_TEXT_LEFT);
 			}
 
 			// username label row
@@ -45,23 +80,24 @@ void Login::render_main(zr_window *window) {
 				password = "";
 				// get the characters in the username box
 				for (unsigned int i = 0; i < usernameBox.glyphes; i++) {
-					username += ((char* ) usernameBox.buffer.memory.ptr)[i];
+					username += ((char*) usernameBox.buffer.memory.ptr)[i];
 				}
 
-				// get the charactesr in the password box
+				// get the characters in the password box
 				for (unsigned int i = 0; i < passwordBox.glyphes; i++) {
-					password += ((char* ) passwordBox.buffer.memory.ptr)[i];
+					password += ((char*) passwordBox.buffer.memory.ptr)[i];
 				}
 
 				if ((username == "admin") & (password == "admin")) {
 					state = 1;
 					adminLogin = true;
-				}
-				else if ((username == "customer") & (password == "customer")) {
-					state = 1;
-				}
-				else {
-					state = 2;
+				} else {
+					*customer_index = GetCustomerLogin(username, password);
+					if (*customer_index != -1) {
+						state = 1;
+					} else {
+						state = 2;
+					}
 				}
 			}
 			zr_layout_row_dynamic(&context, 30, 1);

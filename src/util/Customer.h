@@ -4,7 +4,8 @@
 
 #include <iostream>
 #include <sstream>
-#include<iomanip>
+#include <iomanip>
+#include "../util/StringOperations.h" // usernames/passwords
 
 using namespace std;
 
@@ -38,10 +39,13 @@ public:
 	/******************
 	 ***  MUTATORS  ***
 	 ******************/
-
 	void SetValues(string customerName, string customerStreet,
 			string customerStateZipCode, bool customerPamphlet,
-			bool customerIsKey, string customerRating);
+			bool customerIsKey, string customerRating,
+			string customerUsername, string customerPassword,
+			unsigned int customerMinimumPurchases,
+			unsigned int customerExtremePurchases,
+			unsigned int customerUltimatePurchases);
 
 	/************************************************************************
 	 * void SetName(string memName);
@@ -66,7 +70,7 @@ public:
 
 	/************************************************************************
 	 * void SetType(char customerType);
-	 * MUTATOR: Changes whether the Customer is a regular or key customer
+	 * MUTATOR: Changes whether the Customer received the pamphlet
 	 * Return: none
 	 ***********************************************************************/
 	void SetReceivedPamphlet(bool customerPamphlet);
@@ -85,6 +89,26 @@ public:
 	 ***********************************************************************/
 	void SetRating(string customerRating);
 
+	/************************************************************************
+	 * string GetMinimumPurchases();
+	 * ACCESSOR: none
+	 * Return: unsigned int - # of minimum packages purchased
+	 ***********************************************************************/
+	void AddMimimumPackage (unsigned int packages);
+
+	/************************************************************************
+	 * string GetExtremePurchases();
+	 * ACCESSOR: none
+	 * Return: unsigned int - # of extreme packages purchased
+	 ***********************************************************************/
+	void AddExtremePackage (unsigned int packages);
+
+	/************************************************************************
+	 * string GetUltimatePurchases();
+	 * ACCESSOR: none
+	 * Return: unsigned int - # of ultimate packages purchased
+	 ***********************************************************************/
+	void AddUltimatePackage (unsigned int packages);
 
 	/******************
 	 ***  ACCESSORS ***
@@ -181,6 +205,9 @@ public:
 	 ***********************************************************************/
 	bool operator<(const Customer &otherCustomer) const;
 
+    static double const minimumPackageCost = 14.95;
+    static double const extremePackageCost = 34.95;
+    static double const ultimatePackageCost = 90.00;
 
 private:
     string name;			/// OUT - name of customer

@@ -2,12 +2,12 @@
 #define UTIL_STRINGOPERATIONS_H_
 
 #include <string>
+#include <sstream>
 using namespace std;
 
-string RemoveSpaces (string theString) {
-	theString.erase(std::remove(theString.begin(), theString.end(), ' '), theString.end());
-	return theString;
-}
-
+string GenerateUsername (string theString);
+string GeneratePassword ();
+string trimSpaces (string theString);
+bool hasSpaces (string theString);
 
 #endif /* UTIL_STRINGOPERATIONS_H_ */

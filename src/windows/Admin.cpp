@@ -9,8 +9,8 @@ string default_data[][5] = { { "Los Angeles Airport", "1 World Way",
 		"90012" }, { "Los Angeles Angels", "2000 East Gene Autry Way",
 		"Anaheim", "CA", "92806" } };
 
-int default_data_2[][2] = { { VERY, KEY }, { SOMEWHAT, KEY }, { NOT, KEY }, {
-		SOMEWHAT, NTH }, { VERY, NTH }, { VERY, KEY } };
+//int default_data_2[][2] = { { VERY, KEY }, { SOMEWHAT, KEY }, { NOT, KEY }, {
+//		SOMEWHAT, NTH }, { VERY, NTH }, { VERY, KEY } };
 
 void Admin::render_main(zr_window *window) {
 	zr_context context;

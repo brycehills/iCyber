@@ -10,7 +10,11 @@ Customer::Customer() {
 	receivedPamphlet = false;
 	isKey = false;
 	rating = "not interested";
-
+	username = "";
+	password = "";
+	minimumPurchases = 0;
+	extremePurchases = 0;
+	ultimatePurchases = 0;
 }
 
 // NON DEFAULT constructor
@@ -23,8 +27,8 @@ Customer::Customer(string customerName, string customerStreet,
 	isKey = customerIsKey;
 	rating = customerRating;
 	receivedPamphlet = false;
-	username = customerName + "0";
-	password = "password";
+	username = GenerateUsername(name);
+	password = GeneratePassword();
 	minimumPurchases = 0;
 	extremePurchases = 0;
 	ultimatePurchases = 0;
@@ -60,22 +64,28 @@ Customer::~Customer() {
  ******************/
 
 /************************************************************************
- * void SetValues(string customerName, string customerAddress,
- bool customerPamphlet, char customerType, int customerRating)
+ * void SetValues
 
  * MUTATOR: Sets all values for customer
  * Return: none
  ***********************************************************************/
-
 void Customer::SetValues(string customerName, string customerStreet,
 		string customerStateZipCode, bool customerPamphlet, bool customerIsKey,
-		string customerRating) {
+		string customerRating, string customerUsername, string customerPassword,
+		unsigned int customerMinimumPurchases,
+		unsigned int customerExtremePurchases,
+		unsigned int customerUltimatePurchases) {
 	name = customerName;
 	street = customerStreet;
 	stateZipCode = customerStateZipCode;
 	receivedPamphlet = customerPamphlet;
 	isKey = customerIsKey;
 	rating = customerRating;
+	username = customerUsername;
+	password = customerPassword;
+	minimumPurchases = customerMinimumPurchases;
+	extremePurchases = customerExtremePurchases;
+	ultimatePurchases = customerUltimatePurchases;
 }
 
 /************************************************************************
@@ -132,6 +142,33 @@ void Customer::SetRating(string customerRating) {
 	rating = customerRating;
 }
 
+/************************************************************************
+ * AddMimimumPackage (unsigned int packages)
+ * MUTATOR: Sets the customer rating
+ * Return: none
+ ***********************************************************************/
+void Customer::AddMimimumPackage(unsigned int packages) {
+	minimumPurchases += packages;
+}
+
+/************************************************************************
+ * AddExtremePackage (unsigned int packages)
+ * MUTATOR: Sets the customer rating
+ * Return: none
+ ***********************************************************************/
+void Customer::AddExtremePackage(unsigned int packages) {
+	extremePurchases += packages;
+}
+
+/************************************************************************
+ * AddUltimatePackage (unsigned int packages)
+ * MUTATOR: Sets the customer rating
+ * Return: none
+ ***********************************************************************/
+void Customer::AddUltimatePackage(unsigned int packages) {
+	ultimatePurchases += packages;
+}
+
 /******************
  ***  ACCESSORS ***
  ******************/
@@ -147,7 +184,6 @@ string Customer::GetName() {
 
 /************************************************************************
  * string GetStreet();
- * ACCESSOR: none
  * Return: street
  ***********************************************************************/
 string Customer::GetStreet() {
@@ -156,7 +192,6 @@ string Customer::GetStreet() {
 
 /************************************************************************
  * string GetStateZipCode();
- * ACCESSOR: none
  * Return: stateZipCode
  ***********************************************************************/
 string Customer::GetStateZipCode() {
@@ -165,8 +200,7 @@ string Customer::GetStateZipCode() {
 
 /************************************************************************
  * bool GetPamphlet();
- * MUTATOR: none
- * Return: true or flase
+ * Return: true or false, the variable receivedPamphlet
  ***********************************************************************/
 bool Customer::GetPamphlet() {
 	return receivedPamphlet;
@@ -174,8 +208,7 @@ bool Customer::GetPamphlet() {
 
 /************************************************************************
  * char GetCustomerType();
- * MUTATOR: none
- * Return: CustomerType
+ * Return: true or false, the variable CustomerType
  ***********************************************************************/
 bool Customer::GetIsKey() {
 	return isKey;
@@ -183,7 +216,6 @@ bool Customer::GetIsKey() {
 
 /************************************************************************
  * string GetRating();
- * MUTATOR: none
  * Return: rating
  ***********************************************************************/
 string Customer::GetRating() {
@@ -192,7 +224,6 @@ string Customer::GetRating() {
 
 /************************************************************************
  * string GetUsername();
- * MUTATOR: none
  * Return: username
  ***********************************************************************/
 string Customer::GetUsername() {
@@ -200,7 +231,6 @@ string Customer::GetUsername() {
 }
 /************************************************************************
  * string GetPassword();
- * MUTATOR: none
  * Return: password
  ***********************************************************************/
 string Customer::GetPassword() {
@@ -208,8 +238,7 @@ string Customer::GetPassword() {
 }
 
 /************************************************************************
- * string GetMinimumPurchases();
- * ACCESSOR: none
+ * unsigned int GetMinimumPurchases();
  * Return: unsigned int - # of minimum packages purchased
  ***********************************************************************/
 unsigned int Customer::GetMinimumPurchases() {
@@ -217,8 +246,7 @@ unsigned int Customer::GetMinimumPurchases() {
 }
 
 /************************************************************************
- * string GetExtremePurchases();
- * ACCESSOR: none
+ * unsigned int GetExtremePurchases();
  * Return: unsigned int - # of extreme packages purchased
  ***********************************************************************/
 unsigned int Customer::GetExtremePurchases() {
@@ -226,8 +254,7 @@ unsigned int Customer::GetExtremePurchases() {
 }
 
 /************************************************************************
- * string GetUltimatePurchases();
- * ACCESSOR: none
+ * unsigned int GetUltimatePurchases();
  * Return: unsigned int - # of ultimate packages purchased
  ***********************************************************************/
 unsigned int Customer::GetUltimatePurchases() {

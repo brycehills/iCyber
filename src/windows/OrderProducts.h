@@ -10,9 +10,13 @@
 #define WINDOWS_ORDERPRODUCTS_H_
 
 #include "Window.h"
+#include "../util/Loader.h" // save
 
 class OrderProducts : public Window {
 private:
+	string output;
+	ostringstream stringStream;
+
 	unsigned int product1State;
 	int product1Value;
 
@@ -33,11 +37,16 @@ public:
 		product1Value = 0;
 		product2Value = 0;
 		product3Value = 0;
+		output = "";
 	}
 	~OrderProducts() {}
 	void render_main(zr_window *);
 	void init() {
 		state = 0;
+		totalCost = 0;
+		product1Value = 0;
+		product2Value = 0;
+		product3Value = 0;
 	}
 };
 

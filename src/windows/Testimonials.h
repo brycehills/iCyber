@@ -2,6 +2,7 @@
 #define WINDOWS_TESTIMONIALS_H_
 
 #include "Window.h"
+#include "../util/Loader.h" // save/load
 
 class Testimonials : public Window {
 private:

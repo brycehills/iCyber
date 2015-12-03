@@ -11,8 +11,8 @@ void Testimonials::render_main(zr_window *window) {
 		std::ostringstream testimonialStream;
 
 		// need a copy of the stack for output
-		stack<string> testimonialOutputStack = testimonials;
-		for (unsigned int i = 0; i < testimonials.size(); i++) {
+		stack<string> testimonialOutputStack = *testimonials;
+		for (unsigned int i = 0; i < testimonials->size(); i++) {
 			testimonialStream << i + 1 << ". \"" << testimonialOutputStack.top() << "\"";
 			testimonialOutputStack.pop();
 			std::string output = testimonialStream.str();
@@ -28,8 +28,8 @@ void Testimonials::render_main(zr_window *window) {
 			for (unsigned int i = 0; i < eb.glyphes; i++) {
 				newTestimonial += ((char* ) eb.buffer.memory.ptr)[i];
 			}
-			testimonials.push(newTestimonial);
-			SaveTestimonials();
+			testimonials->push(newTestimonial);
+			SaveTestimonials(testimonials);
 			zr_edit_box_clear(&eb);
 			newTestimonial = "";
 		}

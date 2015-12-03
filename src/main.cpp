@@ -10,6 +10,7 @@
 #include "windows/Testimonials.h"
 #include "windows/CustomerMenu.h"
 #include "windows/CustomerListWindow.h"
+#include "windows/EditCustomer.h"
 #include "windows/AddUser.h"
 #include "gui/zahnrad.h"
 #include "GUI.h"
@@ -112,8 +113,10 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prev, LPSTR lpCmdLine, int sho
 	testimonials = new stack<string>;
 	customers = new vector<Customer>;
 	customer_index = new int;
+	*customer_index = -1;
 	LoadTestimonials(testimonials);
 	LoadCustomers(customers);
+	SaveCustomers(customers);
 
 
     windows = new Window*[num_windows];
@@ -125,6 +128,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prev, LPSTR lpCmdLine, int sho
     windows[CUSTOMER_MENU] = new CustomerMenu(testimonials, customers, customer_index);
     windows[CUSTOMER_LIST] = new CustomerListWindow(testimonials, customers, customer_index);
     windows[ADD_USER] = new AddUser(testimonials, customers, customer_index);
+    windows[EDIT_CUSTOMER] = new EditCustomer(testimonials, customers, customer_index);
     //load your windows here!
 
     gui.running = true;
@@ -155,9 +159,9 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prev, LPSTR lpCmdLine, int sho
         windows[window_index]->render_main(&gui.window);
         if (windows[window_index]->exit_program()) gui.running = false;
         if (windows[window_index]->do_update()) {
-        	windows[window_index]->set_data(members, num_members);
+        	windows[window_index]->set_data(testimonials, customers, customer_index);
         	for (int i = 0; i < num_windows; i++){
-        		if (i != window_index && windows[i] != NULL) windows[i]->update_data(members, num_members);
+        		if (i != window_index && windows[i] != NULL) windows[i]->update_data(testimonials, customers, customer_index);
         	}
         }
         window = windows[window_index]->setWindow();

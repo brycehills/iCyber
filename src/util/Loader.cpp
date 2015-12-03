@@ -115,38 +115,38 @@ void LoadCustomers(vector<Customer>* customers) {
 
 void SaveCustomers(vector<Customer>* customers) {
 	ofstream outFile;
-	vector<Customer>* outputVector;
+	vector<Customer> outputVector;
 
-	outputVector = customers;
+	outputVector = *customers;
 
 	outFile.open("SavedCustomers.txt");
 
-	while (!outputVector->empty()) {
-		outFile << outputVector->front().GetName() << endl;
-		outFile << outputVector->front().GetStreet() << endl;
-		outFile << outputVector->front().GetStateZipCode() << endl;
-		outFile << outputVector->front().GetRating() << endl;
-		if (outputVector->front().GetIsKey()) {
+	while (!outputVector.empty()) {
+		outFile << outputVector.front().GetName() << endl;
+		outFile << outputVector.front().GetStreet() << endl;
+		outFile << outputVector.front().GetStateZipCode() << endl;
+		outFile << outputVector.front().GetRating() << endl;
+		if (outputVector.front().GetIsKey()) {
 			outFile << "key";
 		} else {
 			outFile << "nice to have";
 		}
 		outFile << endl;
-		if (outputVector->front().GetPamphlet()) {
+		if (outputVector.front().GetPamphlet()) {
 			outFile << "true";
 		} else {
 			outFile << "false";
 		}
 		outFile << endl;
-		outFile << outputVector->front().GetUsername() << endl;
-		outFile << outputVector->front().GetPassword() << endl;
-		outFile << outputVector->front().GetMinimumPurchases() << endl;
-		outFile << outputVector->front().GetExtremePurchases() << endl;
-		outFile << outputVector->front().GetUltimatePurchases();
+		outFile << outputVector.front().GetUsername() << endl;
+		outFile << outputVector.front().GetPassword() << endl;
+		outFile << outputVector.front().GetMinimumPurchases() << endl;
+		outFile << outputVector.front().GetExtremePurchases() << endl;
+		outFile << outputVector.front().GetUltimatePurchases();
 
-		outputVector->erase(outputVector->begin());
+		outputVector.erase(outputVector.begin());
 		// only make a new line if it isn't the last item
-		if (!outputVector->empty()) {
+		if (!outputVector.empty()) {
 			outFile << endl;
 		}
 	}
@@ -155,24 +155,24 @@ void SaveCustomers(vector<Customer>* customers) {
 
 void SaveTestimonials(stack<string>* testimonials) {
 	ofstream outFile;
-	stack<string>* popStack;
-	stack<string>* saveStack;
+	stack<string> popStack;
+	stack<string> saveStack;
 
-	popStack = testimonials;
+	popStack = *testimonials;
 
 	// put testimonials into saveStack in reverse order
-	while (!popStack->empty()) {
-		saveStack->push(popStack->top());
-		popStack->pop();
+	while (!popStack.empty()) {
+		saveStack.push(popStack.top());
+		popStack.pop();
 	}
 
 	outFile.open("SavedTestimonials.txt");
 
-	while (!saveStack->empty()) {
-		outFile << saveStack->top();
-		saveStack->pop();
+	while (!saveStack.empty()) {
+		outFile << saveStack.top();
+		saveStack.pop();
 		// only make a new line if it isn't the last item
-		if (!saveStack->empty()) {
+		if (!saveStack.empty()) {
 			outFile << endl;
 		}
 	}

@@ -18,10 +18,10 @@ bool InFileExistsAndIsNotEmpty(string);
 
 void LoadTestimonials(stack<string>*);
 
-void LoadCustomers(stack<string>*);
+void LoadCustomers(vector<Customer>*);
 
 void SaveCustomers(vector<Customer>*);
 
-void SaveTestimonials(vector<Customer>*);
+void SaveTestimonials(stack<string>*);
 
 #endif /* UTIL_LOADER_H_ */
