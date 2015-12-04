@@ -30,6 +30,8 @@ void Login::render_main(zr_window *window) {
 	zr_context context;
 	zr_begin(&context, window);
 	{
+		oldPasswordBoxLength = passwordBoxLength;
+
 		if (state == 1) {
 			if (adminLogin) {
 				zr_header(&context, "Welcome Administrator", 0, 0,
@@ -71,24 +73,28 @@ void Login::render_main(zr_window *window) {
 
 			// password box row
 			zr_layout_row_static(&context, 30, 240, 8);
-			zr_editbox(&context, &passwordBox);
+			zr_edit(&context, password_buffer, &passwordBoxLength, MAX_BUFFER,
+					&passwordBoxState, NULL, ZR_INPUT_DEFAULT);
+			if (oldPasswordBoxLength < passwordBoxLength) {
+				password += password_buffer[passwordBoxLength - 1];
+				password_buffer[passwordBoxLength - 1] = '*';
+			}
+			else if (oldPasswordBoxLength > passwordBoxLength) {
+				password.erase(password.size() - 1);
+			}
+			zr_label(&context, password.c_str(), ZR_TEXT_LEFT);
 
 			// submit box row
 			zr_layout_row_dynamic(&context, 30, 9);
 			if (zr_button_text(&context, "Submit", ZR_BUTTON_DEFAULT)) {
 				username = "";
-				password = "";
 				// get the characters in the username box
 				for (unsigned int i = 0; i < usernameBox.glyphes; i++) {
 					username += ((char*) usernameBox.buffer.memory.ptr)[i];
 				}
 
-				// get the characters in the password box
-				for (unsigned int i = 0; i < passwordBox.glyphes; i++) {
-					password += ((char*) passwordBox.buffer.memory.ptr)[i];
-				}
-
-				if ((username == "admin") & (password == "admin")) {
+				if ((username == AdminClass().GetUsername())
+						&& (password == AdminClass().GetPassword())) {
 					state = 1;
 					adminLogin = true;
 				} else {
@@ -111,6 +117,7 @@ void Login::render_main(zr_window *window) {
 				changeWindow(CUSTOMER_MENU);
 			}
 		}
+
 	}
 	zr_end(&context, window);
 }

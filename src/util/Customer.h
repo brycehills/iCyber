@@ -6,6 +6,7 @@
 #include <sstream>
 #include <iomanip>
 #include "../util/StringOperations.h" // usernames/passwords/toupper
+#include "../util/User.h"	// base virtual class
 
 using namespace std;
 
@@ -14,7 +15,7 @@ using namespace std;
  * This class represents Customer of the iCyber product. It is used to
  * store information on the customer.
  ***********************************************************************/
-class Customer
+class Customer : public User
 {
 
 public:
@@ -224,8 +225,6 @@ private:
     bool receivedPamphlet;	/// OUT - if customer has received pamphlet or not
     bool isKey;				/// OUT - tells if Customer is regular or executive
     string rating;			/// OUT - Customer rating
-    string username;
-    string password;
     unsigned int minimumPurchases;
     unsigned int extremePurchases;
     unsigned int ultimatePurchases;
