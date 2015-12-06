@@ -6,6 +6,10 @@
 #include <sstream>
 #include <iostream>
 #include "../util/Customer.h" // customer class
+#include "../util/Date.h" // date class
+#include "../util/TestimonialClass.h" // TestimonialClass class
+#include "../util/MyStack.h" // TestimonialClass class
+#include "../util/MyStack.cpp" // TestimonialClass class
 #include <vector> // vector for customers
 #include <stack> // testimonial stack
 #include <fstream> // ifstream/ofstream
@@ -16,12 +20,12 @@ using namespace std;
 
 bool InFileExistsAndIsNotEmpty(string);
 
-void LoadTestimonials(stack<string>*);
+void LoadTestimonials(MyStack<TestimonialClass>*);
 
 void LoadCustomers(vector<Customer>*);
 
 void SaveCustomers(vector<Customer>*);
 
-void SaveTestimonials(stack<string>*);
+void SaveTestimonials(MyStack<TestimonialClass>*);
 
 #endif /* UTIL_LOADER_H_ */

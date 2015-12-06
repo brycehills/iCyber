@@ -3,6 +3,9 @@
 
 #include <string>
 #include <sstream>
+#include <stdlib.h>     // srand, rand
+#include <time.h>       // time
+#include <ctime>
 using namespace std;
 
 string GenerateUsername (string theString);

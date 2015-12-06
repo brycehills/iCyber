@@ -59,7 +59,7 @@ private:
 	bool isInvalidCustomer;
 
 public:
-	AddUser(stack<string>* t, vector<Customer>* c, int *c_i) :
+	AddUser(MyStack<TestimonialClass>* t, vector<Customer>* c, int *c_i) :
 		Window(t, c, c_i) {
 		ID = ADD_USER;
 		zr_edit_box_init_fixed(&nameBox, name_buffer, MAX_BUFFER, NULL, NULL);

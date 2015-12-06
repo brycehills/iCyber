@@ -14,6 +14,8 @@
 #include <fstream> // ifstream/ofstream
 #include <algorithm> // sort
 #include <limits> // number limits
+#include "../util/TestimonialClass.h"
+#include "../util/MyStack.h"
 
 using namespace std;
 
@@ -40,13 +42,13 @@ private:
 	bool set, update, exit_prog;
 	int ID_c;
 protected:
-	stack<string>* testimonials;
+	MyStack<TestimonialClass>* testimonials;
 	vector<Customer>* customers;
 	int *customer_index;
 public:
 	void * return_val;
 	int ID;
-	Window(stack<string>* t, vector<Customer>* c, int *c_i) {
+	Window(MyStack<TestimonialClass>* t, vector<Customer>* c, int *c_i) {
 		update_data(t, c, c_i);
 		set = false;
 		ID_c = 0;
@@ -68,13 +70,13 @@ public:
 		return false;
 	}
 
-	void update_data(stack<string>* t, vector<Customer>* c, int *c_i) { //don't call this function
+	void update_data(MyStack<TestimonialClass>* t, vector<Customer>* c, int *c_i) { //don't call this function
 		testimonials = t;
 		customers = c;
 		customer_index = c_i;
 	}
 
-	void set_data(stack<string> *&t, vector<Customer> *&c, int *&c_i) { //don't call this function
+	void set_data(MyStack<TestimonialClass>*&t, vector<Customer> *&c, int *&c_i) { //don't call this function
 		t = testimonials;
 		c = customers;
 		c_i = customer_index;

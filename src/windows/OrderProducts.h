@@ -30,7 +30,7 @@ private:
 
 	int state;
 public:
-	OrderProducts(stack<string>* t, vector<Customer>* c, int *c_i) : Window(t, c, c_i) {
+	OrderProducts(MyStack<TestimonialClass>* t, vector<Customer>* c, int *c_i) : Window(t, c, c_i) {
 		ID = ORDER_PRODUCTS;
 		state = 0;
 		totalCost = 0;

@@ -23,7 +23,7 @@ private:
 
 	int GetCustomerLogin(string username, string password);
 public:
-	Login(stack<string>* t, vector<Customer>* c, int *c_i) : Window(t, c, c_i) {
+	Login(MyStack<TestimonialClass>* t, vector<Customer>* c, int *c_i) : Window(t, c, c_i) {
 		ID = LOGIN;
 		state = 0;
 		zr_edit_box_init_fixed(&usernameBox, username_buffer, MAX_BUFFER,

@@ -3,6 +3,8 @@
 
 #include <string>
 #include <stack>
+#include <iostream>
+#include <iomanip>
 using namespace std;
 
 template <class Type>
@@ -11,9 +13,12 @@ class MyStack {
 	MyStack();
 	~MyStack();
 	void push(Type theObject);
-	string popAndOutput();
+	void pop();
+	Type top();
+	Type Get(unsigned int index);
+	unsigned int size();
+	bool empty();
   private:
-	//Date creationDate;
 	stack<Type> theStack;
 };
 

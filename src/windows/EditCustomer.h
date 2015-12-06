@@ -63,7 +63,7 @@ private:
 	int findCustomer(string searchName);
 
 public:
-	EditCustomer(stack<string>* t, vector<Customer>* c, int *c_i) :
+	EditCustomer(MyStack<TestimonialClass>* t, vector<Customer>* c, int *c_i) :
 		Window(t, c, c_i) {
 		ID = EDIT_CUSTOMER;
 		zr_edit_box_init_fixed(&nameBox, name_buffer, MAX_BUFFER, NULL, NULL);

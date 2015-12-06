@@ -10,7 +10,7 @@ private:
 	ostringstream customerNameStream;
 	string output;
 public:
-	CustomerMenu(stack<string>* t, vector<Customer>* c, int *c_i) : Window(t, c, c_i) {
+	CustomerMenu(MyStack<TestimonialClass>* t, vector<Customer>* c, int *c_i) : Window(t, c, c_i) {
 		ID = CUSTOMER_MENU;
 		state = 0;
 	}

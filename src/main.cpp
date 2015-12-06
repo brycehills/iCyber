@@ -15,6 +15,8 @@
 #include "gui/zahnrad.h"
 #include "GUI.h"
 #include "util/Loader.h"
+#include "util/TestimonialClass.h"
+#include "util/MyStack.h"
 #include "Member/Member.h"
 
 #define WINDOW_WIDTH 1024
@@ -36,7 +38,7 @@ int window; //for saving window data
 //Number of windows, add as you move forward
 int num_windows = 8;
 
-stack<string> *testimonials;
+MyStack<TestimonialClass>*testimonials;
 vector<Customer> *customers;
 int *customer_index;
 
@@ -110,7 +112,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prev, LPSTR lpCmdLine, int sho
     set_style(&gui.style);
 
     //this is where you initialize all the program specific stuff
-	testimonials = new stack<string>;
+	testimonials = new MyStack<TestimonialClass>;
 	customers = new vector<Customer>;
 	customer_index = new int;
 	*customer_index = -1;

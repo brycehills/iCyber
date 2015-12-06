@@ -11,7 +11,8 @@ private:
 	string editButtonString;
 	string removeButtonString;
 public:
-	CustomerListWindow(stack<string>* t, vector<Customer>* c, int *c_i) : Window(t, c, c_i) {
+	CustomerListWindow(MyStack<TestimonialClass>* t, vector<Customer>* c,
+			int *c_i) : Window(t, c, c_i) {
 		ID = CUSTOMER_LIST;
 		isCheckBoxUnTicked = 1;
 		output = "";

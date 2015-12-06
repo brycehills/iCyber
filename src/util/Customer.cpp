@@ -282,7 +282,7 @@ bool Customer::operator<(const Customer &otherCustomer) const {
  * MUTATOR: none
  * Return: ostream of customer's name
  ***********************************************************************/
-ostream& operator<< (ostream& output, Customer& outputCustomer) {
+ostream& operator<<(ostream& output, Customer& outputCustomer) {
 	output << outputCustomer.name;
 	return output;
 }

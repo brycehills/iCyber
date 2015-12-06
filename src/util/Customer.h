@@ -7,6 +7,8 @@
 #include <iomanip>
 #include "../util/StringOperations.h" // usernames/passwords/toupper
 #include "../util/User.h"	// base virtual class
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 
 using namespace std;
 
@@ -21,10 +23,13 @@ class Customer : public User
 public:
 
 	//CONSTRUCTORS
+	// no-art constrcutor
 	Customer();
+	// non-default constructor
 	Customer(string customerName, string customerStreet,
 			string customerStateZipCode, bool customerIsKey,
 			string customerRating);
+	// non-default constructor
 	Customer(string customerName, string customerStreet,
 			string customerStateZipCode, bool customerPamphlet,
 			bool customerIsKey, string customerRating,

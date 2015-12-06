@@ -1,4 +1,5 @@
 #include "Loader.h"
+#include "../util/MyStack.h" // TestimonialClass class
 
 bool InFileExistsAndIsNotEmpty(string inFileName) {
 	ifstream inFile;
@@ -21,9 +22,15 @@ bool InFileExistsAndIsNotEmpty(string inFileName) {
 	return existsAndNotEmpty;
 }
 
-void LoadTestimonials(stack<string>* testimonials) {
+void LoadTestimonials(MyStack<TestimonialClass>* testimonials) {
 	ifstream inFile;
 	string newTestimonial;
+	Date *postDate;
+	TestimonialClass *newTestimonialObject;
+	unsigned short year;
+	unsigned short day;
+	unsigned short month;
+
 	if (InFileExistsAndIsNotEmpty("SavedTestimonials.txt")) {
 		inFile.open("SavedTestimonials.txt");
 	} else {
@@ -32,7 +39,13 @@ void LoadTestimonials(stack<string>* testimonials) {
 
 	while (!inFile.eof()) {
 		getline(inFile, newTestimonial);
-		testimonials->push(newTestimonial);
+		inFile >> month;
+		inFile >> day;
+		inFile >> year;
+		postDate = new Date(year, month, day);
+		newTestimonialObject = new TestimonialClass(newTestimonial, postDate);
+		inFile.ignore(numeric_limits<streamsize>::max(), '\n');
+		testimonials->push(*newTestimonialObject);
 	}
 
 	inFile.close();
@@ -153,10 +166,10 @@ void SaveCustomers(vector<Customer>* customers) {
 	outFile.close();
 }
 
-void SaveTestimonials(stack<string>* testimonials) {
+void SaveTestimonials(MyStack<TestimonialClass>* testimonials) {
 	ofstream outFile;
-	stack<string> popStack;
-	stack<string> saveStack;
+	MyStack<TestimonialClass>popStack;
+	MyStack<TestimonialClass>saveStack;
 
 	popStack = *testimonials;
 
@@ -169,7 +182,10 @@ void SaveTestimonials(stack<string>* testimonials) {
 	outFile.open("SavedTestimonials.txt");
 
 	while (!saveStack.empty()) {
-		outFile << saveStack.top();
+		outFile << saveStack.top().GetMessage() << endl;
+		outFile << saveStack.top().GetDate().GetMonth() << endl;
+		outFile << saveStack.top().GetDate().GetDay() << endl;
+		outFile << saveStack.top().GetDate().GetYear();
 		saveStack.pop();
 		// only make a new line if it isn't the last item
 		if (!saveStack.empty()) {

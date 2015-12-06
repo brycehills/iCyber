@@ -57,5 +57,26 @@ string trimSpaces (string theString) {
 }
 
 string GeneratePassword () {
-	return "password";
+	ostringstream password;
+
+	int randNum1, randNum2;
+	char randomLowerCase1, randomLowerCase2,
+	randomUpperCase1, randomUpperCase2;
+
+	// generate random number between 0 and 99
+	randNum1 = rand() % 100;
+	randNum2 = rand() % 100;
+
+	// generate random upper case letter
+	randomUpperCase1 = 'A' + rand() % 26;
+	randomUpperCase2 = 'A' + rand() % 26;
+
+	// generate random lower case letter
+	randomLowerCase1 = 'a' + rand() % 26;
+	randomLowerCase2 = 'a' + rand() % 26;
+
+	password << randomLowerCase1 << randomUpperCase1 << randNum1
+			<< randomUpperCase2 << randomLowerCase1 << randNum2;
+
+	return password.str();
 }
