@@ -12,6 +12,7 @@ public:
 	~TestimonialClass();
 	// copy constructor
 	TestimonialClass(const TestimonialClass& otherTestimonial);
+	void SetDate(Date *theDate);
 	Date GetDate() const;
 	string GetMessage() const;
 private:
