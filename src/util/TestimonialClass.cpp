@@ -17,7 +17,7 @@ TestimonialClass::TestimonialClass(const TestimonialClass& otherTestimonial)  {
 }
 
 TestimonialClass::~TestimonialClass(){
-	delete postDate;
+
 }
 
 Date TestimonialClass::GetDate() const {
