@@ -13,7 +13,7 @@ private:
 	zr_char username_buffer[MAX_BUFFER];
 	zr_char password_buffer[MAX_BUFFER];
 	zr_size passwordBoxLength;
-	zr_size oldPasswordBoxLength;
+	zr_size oldPasswordBoxLength, cursor;
 	zr_state passwordBoxState;
 
 	int state;
@@ -28,10 +28,13 @@ public:
 		state = 0;
 		zr_edit_box_init_fixed(&usernameBox, username_buffer, MAX_BUFFER,
 				NULL, NULL);
-//		zr_edit_box_init_fixed(&passwordBox, password_buffer, MAX_BUFFER,
-//				NULL, NULL);
+		zr_edit_box_init_fixed(&passwordBox, password_buffer, MAX_BUFFER,
+				NULL, NULL);
 		adminLogin = false;
 		*customer_index = -1;
+		cursor = 0;
+		passwordBoxState = false;
+		passwordBoxLength = 0;
 	}
 	~Login() {}
 	void render_main(zr_window *);
@@ -45,6 +48,7 @@ public:
 			password_buffer[i] = '\0';
 		}
 		passwordBoxLength = 0;
+		cursor = 0;
 	}
 };
 

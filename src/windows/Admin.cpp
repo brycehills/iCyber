@@ -1,17 +1,5 @@
 #include "Admin.h"
 
-string default_data[][5] = { { "Los Angeles Airport", "1 World Way",
-		"Los Angeles", "CA", "90045" }, { "FBI", "1234 Lincoln Ave.",
-		"Washington", "DC", "00234" }, { "CIA", "987 Jefferson Blvd",
-		"Baltimore", "MD", "00754" }, { "Saddleback College",
-		"28000 Marguerite Pkwy", "Mission Viejo", "CA", "92692" }, {
-		"Los Angeles Dodgers", "1000 Elysian Park Avenue", "Los Angeles", "CA",
-		"90012" }, { "Los Angeles Angels", "2000 East Gene Autry Way",
-		"Anaheim", "CA", "92806" } };
-
-//int default_data_2[][2] = { { VERY, KEY }, { SOMEWHAT, KEY }, { NOT, KEY }, {
-//		SOMEWHAT, NTH }, { VERY, NTH }, { VERY, KEY } };
-
 void Admin::render_main(zr_window *window) {
 	zr_context context;
 	zr_begin(&context, window);

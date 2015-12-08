@@ -3,7 +3,6 @@
 #include <iostream>
 #include <vector>
 #include <stack>
-#include "windows/Loader.h"
 #include "windows/Admin.h"
 #include "windows/Login.h"
 #include "windows/OrderProducts.h"
@@ -17,7 +16,6 @@
 #include "util/Loader.h"
 #include "util/TestimonialClass.h"
 #include "util/MyStack.h"
-#include "Member/Member.h"
 
 #define WINDOW_WIDTH 1024
 #define WINDOW_HEIGHT 600
@@ -168,8 +166,8 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prev, LPSTR lpCmdLine, int sho
         }
         window = windows[window_index]->setWindow();
         if (window_index != window) {
-        	windows[window_index]->init();
         	window_index = window;
+        	windows[window_index]->init();
         }
 
         surface_begin(xw.backbuffer);

@@ -99,7 +99,6 @@ void CustomerListWindow::render_main(zr_window *window) {
 								<< CustomerOutputVector.front().GetExtremePurchases()
 										* Customer::extremePackageCost
 								<< "/Month)";
-						;
 						output = productQuantityStream.str();
 						zr_label(&context, output.c_str(), ZR_TEXT_LEFT);
 
@@ -115,7 +114,7 @@ void CustomerListWindow::render_main(zr_window *window) {
 								<< CustomerOutputVector.front().GetUltimatePurchases()
 										* Customer::ultimatePackageCost
 								<< "/Month)";
-						;
+
 						output = productQuantityStream.str();
 						zr_label(&context, output.c_str(), ZR_TEXT_LEFT);
 

@@ -6,8 +6,8 @@ void OrderProducts::render_main(zr_window *window) {
 	zr_begin(&context, window);
 	{
 		zr_header(&context, "Order Products", 0, 0, ZR_HEADER_LEFT);
+		zr_layout_row_dynamic(&context, 30, 1);
 		if (state == 1) {
-			zr_layout_row_dynamic(&context, 30, 1);
 			zr_label(&context, "You have ordered products", ZR_TEXT_LEFT);
 		}
 

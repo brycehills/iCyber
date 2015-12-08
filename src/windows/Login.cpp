@@ -58,7 +58,6 @@ void Login::render_main(zr_window *window) {
 				zr_label(&context, "Error! Wrong username/password",
 						ZR_TEXT_LEFT);
 			}
-
 			// username label row
 			zr_layout_row_dynamic(&context, 30, 1);
 			zr_label(&context, "Username:", ZR_TEXT_LEFT);
@@ -73,16 +72,15 @@ void Login::render_main(zr_window *window) {
 
 			// password box row
 			zr_layout_row_static(&context, 30, 240, 8);
-			zr_edit(&context, password_buffer, &passwordBoxLength, MAX_BUFFER,
-					&passwordBoxState, NULL, ZR_INPUT_DEFAULT);
+			zr_edit(&context, password_buffer, &passwordBoxLength, MAX_BUFFER, &passwordBoxState, &cursor, ZR_INPUT_DEFAULT);
+
 			if (oldPasswordBoxLength < passwordBoxLength) {
 				password += password_buffer[passwordBoxLength - 1];
 				password_buffer[passwordBoxLength - 1] = '*';
-			}
-			else if (oldPasswordBoxLength > passwordBoxLength) {
+			} else if (oldPasswordBoxLength > passwordBoxLength) {
 				password.erase(password.size() - 1);
 			}
-			zr_label(&context, password.c_str(), ZR_TEXT_LEFT);
+			//zr_label(&context, password.c_str(), ZR_TEXT_LEFT);
 
 			// submit box row
 			zr_layout_row_dynamic(&context, 30, 9);
@@ -107,6 +105,10 @@ void Login::render_main(zr_window *window) {
 					}
 				}
 			}
+			if (zr_button_text(&context, "Exit", ZR_BUTTON_DEFAULT)) {
+				exit();
+			}
+			/*
 			zr_layout_row_dynamic(&context, 30, 1);
 			if (zr_button_text(&context, "DEBUG ONLY: Quick Admin Login",
 					ZR_BUTTON_DEFAULT)) {
@@ -116,6 +118,7 @@ void Login::render_main(zr_window *window) {
 					ZR_BUTTON_DEFAULT)) {
 				changeWindow(CUSTOMER_MENU);
 			}
+			*/
 		}
 
 	}

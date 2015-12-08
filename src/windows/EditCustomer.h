@@ -79,46 +79,93 @@ public:
 		searchIndex = 0;
 		currentRatingInt = 0;
 		ratingComboBoxState = 0;
-		product1Value = 0;
-		product2Value = 0;
-		product3Value = 0;
 		isKey = false;
 		isPamphletReceived = false;
 		isCustomerChanged = false;
-		isKeyBoxUnTicked = 1;
-		isPamphletBoxUnTicked = 1;
 		isUsernameDuplicate = false;
 		isInvalidCustomer = false;
 		isUsernameInvalid = false;
 		isPasswordInvalid = false;
+
+		if (*customer_index != -1) {
+			if (customers->at(*customer_index).GetIsKey()) {
+				isKeyBoxUnTicked = 0;
+			} else {
+				isKeyBoxUnTicked = 1;
+			}
+			if (customers->at(*customer_index).GetPamphlet()) {
+				isPamphletBoxUnTicked = 0;
+			}
+			else {
+				isPamphletBoxUnTicked = 1;
+			}
+			product1Value = customers->at(*customer_index).GetMinimumPurchases();
+			product2Value = customers->at(*customer_index).GetExtremePurchases();
+			product3Value = customers->at(*customer_index).GetUltimatePurchases();
+			zr_edit_box_add(&nameBox, customers->at(*customer_index).GetName().c_str(), customers->at(*customer_index).GetName().size());
+			zr_edit_box_add(&streetBox, customers->at(*customer_index).GetStreet().c_str(), customers->at(*customer_index).GetStreet().size());
+			zr_edit_box_add(&stateZipCodeBox, customers->at(*customer_index).GetStateZipCode().c_str(), customers->at(*customer_index).GetStateZipCode().size());
+			zr_edit_box_add(&usernameBox, customers->at(*customer_index).GetUsername().c_str(), customers->at(*customer_index).GetUsername().size());
+		} else {
+			isPamphletBoxUnTicked = 1;
+			isKeyBoxUnTicked = 1;
+			product1Value = 0;
+			product2Value = 0;
+			product3Value = 0;
+			zr_edit_box_clear(&nameBox);
+			zr_edit_box_clear(&streetBox);
+			zr_edit_box_clear(&stateZipCodeBox);
+			zr_edit_box_clear(&usernameBox);
+			zr_edit_box_clear(&passwordBox);
+		}
 	}
 	~EditCustomer() {}
 	void render_main(zr_window *);
 	void init() {
-		zr_edit_box_clear(&nameBox);
-		zr_edit_box_clear(&streetBox);
-		zr_edit_box_clear(&stateZipCodeBox);
-		zr_edit_box_clear(&usernameBox);
-		zr_edit_box_clear(&passwordBox);
 		isNameDuplicate = false;
 		searchIndex = 0;
 		currentRatingInt = 0;
 		ratingComboBoxState = 0;
-//		product1Value = customers->at(*customer_index).GetMinimumPurchases();
-//		product2Value = customers->at(*customer_index).GetExtremePurchases();
-//		product3Value = customers->at(*customer_index).GetUltimatePurchases();
-		product1Value = 0;
-		product2Value = 0;
-		product3Value = 0;
 		isKey = false;
 		isPamphletReceived = false;
 		isCustomerChanged = false;
-		isKeyBoxUnTicked = 1;
 		isPamphletBoxUnTicked = 1;
 		isUsernameDuplicate = false;
 		isInvalidCustomer = false;
 		isUsernameInvalid = false;
 		isPasswordInvalid = false;
+
+		if (*customer_index != -1) {
+			if (customers->at(*customer_index).GetIsKey()) {
+				isKeyBoxUnTicked = 0;
+			} else {
+				isKeyBoxUnTicked = 1;
+			}
+			if (customers->at(*customer_index).GetPamphlet()) {
+				isPamphletBoxUnTicked = 0;
+			}
+			else {
+				isPamphletBoxUnTicked = 1;
+			}
+			product1Value = customers->at(*customer_index).GetMinimumPurchases();
+			product2Value = customers->at(*customer_index).GetExtremePurchases();
+			product3Value = customers->at(*customer_index).GetUltimatePurchases();
+			zr_edit_box_add(&nameBox, customers->at(*customer_index).GetName().c_str(), customers->at(*customer_index).GetName().size());
+			zr_edit_box_add(&streetBox, customers->at(*customer_index).GetStreet().c_str(), customers->at(*customer_index).GetStreet().size());
+			zr_edit_box_add(&stateZipCodeBox, customers->at(*customer_index).GetStateZipCode().c_str(), customers->at(*customer_index).GetStateZipCode().size());
+			zr_edit_box_add(&usernameBox, customers->at(*customer_index).GetUsername().c_str(), customers->at(*customer_index).GetUsername().size());
+		} else {
+			isPamphletBoxUnTicked = 1;
+			isKeyBoxUnTicked = 1;
+			product1Value = 0;
+			product2Value = 0;
+			product3Value = 0;
+			zr_edit_box_clear(&nameBox);
+			zr_edit_box_clear(&streetBox);
+			zr_edit_box_clear(&stateZipCodeBox);
+			zr_edit_box_clear(&usernameBox);
+			zr_edit_box_clear(&passwordBox);
+		}
 	}
 };
 

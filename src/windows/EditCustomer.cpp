@@ -26,8 +26,6 @@ int EditCustomer::findCustomer(string searchName) {
 	return returnIndex;
 }
 
-
-
 void EditCustomer::render_main(zr_window *window) {
 	zr_context context;
 	zr_begin(&context, window);
@@ -43,33 +41,21 @@ void EditCustomer::render_main(zr_window *window) {
 		zr_layout_row_dynamic(&context, 30, 4);
 		zr_label(&context, "Name:", ZR_TEXT_LEFT);
 		zr_editbox(&context, &nameBox);
-		output = "Current: " + customers->at(*customer_index).GetName();
-		zr_label(&context, output.c_str(), ZR_TEXT_LEFT);
-		if (isNameDuplicate) {
-			zr_label(&context, "Could not change: Name already exists",
-					ZR_TEXT_LEFT);
-		}
 
 		// street box
 		zr_layout_row_dynamic(&context, 30, 4);
 		zr_label(&context, "Street:", ZR_TEXT_LEFT);
 		zr_editbox(&context, &streetBox);
-		output = "Current: " + customers->at(*customer_index).GetStreet();
-		zr_label(&context, output.c_str(), ZR_TEXT_LEFT);
 
 		// state zipcode box
 		zr_layout_row_dynamic(&context, 30, 4);
 		zr_label(&context, "State and Zip Code:", ZR_TEXT_LEFT);
 		zr_editbox(&context, &stateZipCodeBox);
-		output = "Current: " + customers->at(*customer_index).GetStateZipCode();
-		zr_label(&context, output.c_str(), ZR_TEXT_LEFT);
 
 		// username box
 		zr_layout_row_dynamic(&context, 30, 4);
 		zr_label(&context, "Username:", ZR_TEXT_LEFT);
 		zr_editbox(&context, &usernameBox);
-		output = "Current: " + customers->at(*customer_index).GetUsername();
-		zr_label(&context, output.c_str(), ZR_TEXT_LEFT);
 		if (isUsernameDuplicate) {
 			zr_label(&context, "Could not change: Username already exists",
 					ZR_TEXT_LEFT);
@@ -93,30 +79,18 @@ void EditCustomer::render_main(zr_window *window) {
 		zr_layout_row_dynamic(&context, 30, 4);
 		zr_label(&context, "Minimal Packages:", ZR_TEXT_LEFT);
 		zr_spinner_int(&context, 0, &product1Value, 9999, 1, &product1State);
-		stringStream << "Current: "
-				<< customers->at(*customer_index).GetMinimumPurchases();
-		output = stringStream.str();
-		zr_label(&context, output.c_str(), ZR_TEXT_LEFT);
 
 		stringStream.str("");
 		stringStream.clear();
 		zr_layout_row_dynamic(&context, 30, 4);
 		zr_label(&context, "Extreme Packages:", ZR_TEXT_LEFT);
 		zr_spinner_int(&context, 0, &product2Value, 9999, 1, &product2State);
-		stringStream << "Current: "
-				<< customers->at(*customer_index).GetExtremePurchases();
-		output = stringStream.str();
-		zr_label(&context, output.c_str(), ZR_TEXT_LEFT);
 
 		stringStream.str("");
 		stringStream.clear();
 		zr_layout_row_dynamic(&context, 30, 4);
 		zr_label(&context, "Ultimate Packages:", ZR_TEXT_LEFT);
 		zr_spinner_int(&context, 0, &product3Value, 9999, 1, &product3State);
-		stringStream << "Current: "
-				<< customers->at(*customer_index).GetUltimatePurchases();
-		output = stringStream.str();
-		zr_label(&context, output.c_str(), ZR_TEXT_LEFT);
 
 		// Rating drop down menu
 		zr_layout_row_dynamic(&context, 30, 4);
@@ -138,30 +112,8 @@ void EditCustomer::render_main(zr_window *window) {
 		// Received Pamphlet and Key Customer Box checkboxes
 		zr_layout_row_dynamic(&context, 30, 4);
 		zr_checkbox(&context, "Requested Pamphlet", &isPamphletBoxUnTicked);
-		stringStream.str("");
-		stringStream.clear();
-		stringStream << "Current: ";
-		if (customers->at(*customer_index).GetPamphlet()) {
-			stringStream << "True";
-		}
-		else {
-			stringStream << "False";
-		}
-		output = stringStream.str();
 
-		zr_label(&context, output.c_str(), ZR_TEXT_LEFT);
 		zr_checkbox(&context, "Key Customer", &isKeyBoxUnTicked);
-		stringStream.str("");
-		stringStream.clear();
-		stringStream << "Current: ";
-		if (customers->at(*customer_index).GetIsKey()) {
-			stringStream << "True";
-		}
-		else {
-			stringStream << "False";
-		}
-		output = stringStream.str();
-		zr_label(&context, output.c_str(), ZR_TEXT_LEFT);
 
 		// submit box row
 		zr_layout_row_dynamic(&context, 30, 1);
@@ -311,7 +263,6 @@ void EditCustomer::render_main(zr_window *window) {
 			changeWindow(ADMIN);
 		}
 		if (isCustomerChanged) {
-			cout << *customer_index;
 			output = "You have changed customer "
 					+ customers->at(*customer_index).GetName()
 					+ "'s information";
