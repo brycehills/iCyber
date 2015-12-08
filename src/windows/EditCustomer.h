@@ -5,7 +5,7 @@
 #include "../util/Loader.h" // save
 #include "../util/StringOperations.h" // save
 
-class EditCustomer : public Window {
+class EditCustomer: public Window {
 private:
 	zr_edit_box nameBox;
 	zr_edit_box streetBox;
@@ -64,17 +64,17 @@ private:
 
 public:
 	EditCustomer(MyStack<TestimonialClass>* t, vector<Customer>* c, int *c_i) :
-		Window(t, c, c_i) {
+			Window(t, c, c_i) {
 		ID = EDIT_CUSTOMER;
 		zr_edit_box_init_fixed(&nameBox, name_buffer, MAX_BUFFER, NULL, NULL);
 		zr_edit_box_init_fixed(&streetBox, street_buffer, MAX_BUFFER, NULL,
-				NULL);
+		NULL);
 		zr_edit_box_init_fixed(&stateZipCodeBox, stateZipCode_buffer,
-				MAX_BUFFER, NULL, NULL);
+		MAX_BUFFER, NULL, NULL);
 		zr_edit_box_init_fixed(&usernameBox, username_buffer, MAX_BUFFER, NULL,
-				NULL);
+		NULL);
 		zr_edit_box_init_fixed(&passwordBox, password_buffer, MAX_BUFFER, NULL,
-				NULL);
+		NULL);
 		isNameDuplicate = false;
 		searchIndex = 0;
 		currentRatingInt = 0;
@@ -95,17 +95,27 @@ public:
 			}
 			if (customers->at(*customer_index).GetPamphlet()) {
 				isPamphletBoxUnTicked = 0;
-			}
-			else {
+			} else {
 				isPamphletBoxUnTicked = 1;
 			}
-			product1Value = customers->at(*customer_index).GetMinimumPurchases();
-			product2Value = customers->at(*customer_index).GetExtremePurchases();
-			product3Value = customers->at(*customer_index).GetUltimatePurchases();
-			zr_edit_box_add(&nameBox, customers->at(*customer_index).GetName().c_str(), customers->at(*customer_index).GetName().size());
-			zr_edit_box_add(&streetBox, customers->at(*customer_index).GetStreet().c_str(), customers->at(*customer_index).GetStreet().size());
-			zr_edit_box_add(&stateZipCodeBox, customers->at(*customer_index).GetStateZipCode().c_str(), customers->at(*customer_index).GetStateZipCode().size());
-			zr_edit_box_add(&usernameBox, customers->at(*customer_index).GetUsername().c_str(), customers->at(*customer_index).GetUsername().size());
+			product1Value =
+					customers->at(*customer_index).GetMinimumPurchases();
+			product2Value =
+					customers->at(*customer_index).GetExtremePurchases();
+			product3Value =
+					customers->at(*customer_index).GetUltimatePurchases();
+			zr_edit_box_add(&nameBox,
+					customers->at(*customer_index).GetName().c_str(),
+					customers->at(*customer_index).GetName().size());
+			zr_edit_box_add(&streetBox,
+					customers->at(*customer_index).GetStreet().c_str(),
+					customers->at(*customer_index).GetStreet().size());
+			zr_edit_box_add(&stateZipCodeBox,
+					customers->at(*customer_index).GetStateZipCode().c_str(),
+					customers->at(*customer_index).GetStateZipCode().size());
+			zr_edit_box_add(&usernameBox,
+					customers->at(*customer_index).GetUsername().c_str(),
+					customers->at(*customer_index).GetUsername().size());
 		} else {
 			isPamphletBoxUnTicked = 1;
 			isKeyBoxUnTicked = 1;
@@ -119,7 +129,8 @@ public:
 			zr_edit_box_clear(&passwordBox);
 		}
 	}
-	~EditCustomer() {}
+	~EditCustomer() {
+	}
 	void render_main(zr_window *);
 	void init() {
 		isNameDuplicate = false;
@@ -143,17 +154,47 @@ public:
 			}
 			if (customers->at(*customer_index).GetPamphlet()) {
 				isPamphletBoxUnTicked = 0;
-			}
-			else {
+			} else {
 				isPamphletBoxUnTicked = 1;
 			}
-			product1Value = customers->at(*customer_index).GetMinimumPurchases();
-			product2Value = customers->at(*customer_index).GetExtremePurchases();
-			product3Value = customers->at(*customer_index).GetUltimatePurchases();
-			zr_edit_box_add(&nameBox, customers->at(*customer_index).GetName().c_str(), customers->at(*customer_index).GetName().size());
-			zr_edit_box_add(&streetBox, customers->at(*customer_index).GetStreet().c_str(), customers->at(*customer_index).GetStreet().size());
-			zr_edit_box_add(&stateZipCodeBox, customers->at(*customer_index).GetStateZipCode().c_str(), customers->at(*customer_index).GetStateZipCode().size());
-			zr_edit_box_add(&usernameBox, customers->at(*customer_index).GetUsername().c_str(), customers->at(*customer_index).GetUsername().size());
+			product1Value =
+					customers->at(*customer_index).GetMinimumPurchases();
+			product2Value =
+					customers->at(*customer_index).GetExtremePurchases();
+			product3Value =
+					customers->at(*customer_index).GetUltimatePurchases();
+			zr_edit_box_clear(&nameBox);
+			zr_edit_box_clear(&streetBox);
+			zr_edit_box_clear(&stateZipCodeBox);
+			zr_edit_box_clear(&usernameBox);
+			zr_edit_box_clear(&passwordBox);
+			zr_edit_box_add(&nameBox,
+					customers->at(*customer_index).GetName().c_str(),
+					customers->at(*customer_index).GetName().size());
+			zr_edit_box_add(&streetBox,
+					customers->at(*customer_index).GetStreet().c_str(),
+					customers->at(*customer_index).GetStreet().size());
+			zr_edit_box_add(&stateZipCodeBox,
+					customers->at(*customer_index).GetStateZipCode().c_str(),
+					customers->at(*customer_index).GetStateZipCode().size());
+			zr_edit_box_add(&usernameBox,
+					customers->at(*customer_index).GetUsername().c_str(),
+					customers->at(*customer_index).GetUsername().size());
+			if (customers->at(*customer_index).GetRating()
+					== "very interested") {
+				currentRatingInt = 0;
+			} else if (customers->at(*customer_index).GetRating()
+					== "somewhat interested") {
+				currentRatingInt = 1;
+
+			} else if (customers->at(*customer_index).GetRating()
+					== "not interested") {
+				currentRatingInt = 2;
+
+			} else if (customers->at(*customer_index).GetRating()
+					== "never call again") {
+				currentRatingInt = 3;
+			}
 		} else {
 			isPamphletBoxUnTicked = 1;
 			isKeyBoxUnTicked = 1;

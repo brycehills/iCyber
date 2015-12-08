@@ -106,8 +106,6 @@ void EditCustomer::render_main(zr_window *window) {
 			}
 		}
 		zr_combo_end(&context, &ratingComboBox, &ratingComboBoxState);
-		output = "Current: " + customers->at(*customer_index).GetRating();
-		zr_label(&context, output.c_str(), ZR_TEXT_LEFT);
 
 		// Received Pamphlet and Key Customer Box checkboxes
 		zr_layout_row_dynamic(&context, 30, 4);
@@ -259,6 +257,9 @@ void EditCustomer::render_main(zr_window *window) {
 
 		}
 		zr_layout_row_dynamic(&context, 30, 1);
+		if (zr_button_text(&context, "Customer List", ZR_BUTTON_DEFAULT)) {
+			changeWindow(CUSTOMER_LIST);
+		}
 		if (zr_button_text(&context, "Main Menu", ZR_BUTTON_DEFAULT)) {
 			changeWindow(ADMIN);
 		}
